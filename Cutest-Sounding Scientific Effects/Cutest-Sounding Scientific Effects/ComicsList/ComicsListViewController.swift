@@ -1,66 +1,84 @@
 import UIKit
 
-class ViewController: UIViewController {
+class ComicListViewController: UIViewController {
 
     @IBOutlet private weak var comicTabelView: UITableView!
     @IBOutlet private weak var searchBar: UISearchBar!
 
-    private var cellsModels: [ComicCellViewModel] = []
-    private var filtredCellsModels: [ComicCellViewModel] = []
+    private var cellsModels: [NetworkComicModel] = []
+    private var filtredCellsModels: [NetworkComicModel] = []
+    private var searching = false
+    private var comics = ComicsModel()
+    private var networkManeger = NetworkManager()
 
-    private static let identifier = "Cell"
+    private let cellHeight = 50.0
+    
+    private let titleText = "Choose your joke"
 
-    var comics = ComicsModel()
-    var height: CGFloat = 300.0
-    var alert: UIAlertController!
-    var networkManeger = NetworkManager()
-    var searching = false
-
+    private static let cellIdentifier = "Cell"
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        title = titleText
         requestData(searchText: "")
-        comicTabelView.register(UITableViewCell.self, forCellReuseIdentifier: ViewController.identifier)
+        setupTabelView()
+        setupSearchBar()
+    }
+
+    private func setupTabelView() {
+        comicTabelView.register(UITableViewCell.self, forCellReuseIdentifier: ComicListViewController.cellIdentifier)
         comicTabelView.dataSource = self
         comicTabelView.delegate = self
+    }
+
+    private func setupSearchBar() {
         searchBar.delegate = self
         self.searchBar.showsCancelButton = true
         filtredCellsModels = cellsModels
-
     }
 }
 
 // MARK: - UITableViewDataSource
 
-extension ViewController: UITableViewDataSource {
+extension ComicListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return filtredCellsModels.count
     }
 
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = comicTabelView.dequeueReusableCell(withIdentifier: ViewController.identifier) else {
+        guard let cell = comicTabelView.dequeueReusableCell(withIdentifier: ComicListViewController.cellIdentifier) else {
             return UITableViewCell()
         }
 
-        cell.textLabel?.text = filtredCellsModels[indexPath.row].jokeTitle
-        cell.detailTextLabel?.text = filtredCellsModels[indexPath.row].jokeText
-
+        cell.textLabel?.text = filtredCellsModels[indexPath.row].title
         return cell
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        comicTabelView.deselectRow(at: indexPath as IndexPath, animated: true)
+        
+        let storyboard = UIStoryboard(name: DetailsComicViewController.identifier, bundle: nil)
+        let detailsComicViewController = storyboard.instantiateViewController(withIdentifier: DetailsComicViewController.identifier) as! DetailsComicViewController
+        detailsComicViewController.setComicId(with: cellsModels[indexPath.row].id)
+
+        self.navigationController?.pushViewController(detailsComicViewController, animated: true)
     }
 }
 
 // MARK: - UITableViewDelegate
 
-extension ViewController: UITableViewDelegate {
+extension ComicListViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        50
+        cellHeight
     }
 }
 
+// MARK: - UISearchBarDelegate
 
-extension ViewController: UISearchBarDelegate {
+extension ComicListViewController: UISearchBarDelegate {
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searching = true
@@ -81,13 +99,11 @@ extension ViewController: UISearchBarDelegate {
             switch result {
             case .success(let comics):
                 self.comics = comics.reversed()
-                self.cellsModels = comics.map { ComicCellViewModel( image: UIImage(),
-                                                                    jokeTitle: $0.safeTitle,
-                                                                    jokeText: $0.title)}
+                self.cellsModels = comics
                 guard let searchText = searchText else {
                     return
                 }
-                let cell = searchText.isEmpty ? self.cellsModels : self.cellsModels.filter { $0.jokeTitle.contains(searchText) }
+                let cell = searchText.isEmpty ? self.cellsModels : self.cellsModels.filter { $0.safeTitle.contains(searchText) }
                 self.filtredCellsModels = cell
 
                 DispatchQueue.main.async {
