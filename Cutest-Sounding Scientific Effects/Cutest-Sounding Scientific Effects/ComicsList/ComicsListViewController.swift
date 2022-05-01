@@ -1,6 +1,6 @@
 import UIKit
 
-class ComicListViewController: UIViewController {
+class ComicsListViewController: UIViewController {
 
     @IBOutlet private weak var comicTabelView: UITableView!
     @IBOutlet private weak var searchBar: UISearchBar!
@@ -27,7 +27,7 @@ class ComicListViewController: UIViewController {
     }
 
     private func setupTabelView() {
-        comicTabelView.register(UITableViewCell.self, forCellReuseIdentifier: ComicListViewController.cellIdentifier)
+        comicTabelView.register(UITableViewCell.self, forCellReuseIdentifier: ComicsListViewController.cellIdentifier)
         comicTabelView.dataSource = self
         comicTabelView.delegate = self
     }
@@ -41,14 +41,14 @@ class ComicListViewController: UIViewController {
 
 // MARK: - UITableViewDataSource
 
-extension ComicListViewController: UITableViewDataSource {
+extension ComicsListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return filtredCellsModels.count
     }
 
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = comicTabelView.dequeueReusableCell(withIdentifier: ComicListViewController.cellIdentifier) else {
+        guard let cell = comicTabelView.dequeueReusableCell(withIdentifier: ComicsListViewController.cellIdentifier) else {
             return UITableViewCell()
         }
 
@@ -69,7 +69,7 @@ extension ComicListViewController: UITableViewDataSource {
 
 // MARK: - UITableViewDelegate
 
-extension ComicListViewController: UITableViewDelegate {
+extension ComicsListViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         cellHeight
@@ -78,7 +78,7 @@ extension ComicListViewController: UITableViewDelegate {
 
 // MARK: - UISearchBarDelegate
 
-extension ComicListViewController: UISearchBarDelegate {
+extension ComicsListViewController: UISearchBarDelegate {
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searching = true

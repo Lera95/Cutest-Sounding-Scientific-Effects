@@ -13,13 +13,16 @@ class DetailsComicViewController: UIViewController {
     private var currentComic = -1
     private var comic: XkcdManegerModel?
 
-    static let identifier = "ComicViewController"
+    private let titleText = "Find the best or randomize"
+
+    static let identifier = "DetailsComicViewController"
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setUpButtonImage()
         XkcdManeger.shared.getLatest()
+        title = titleText
         textLabel.numberOfLines = 0
     }
 
@@ -28,6 +31,8 @@ class DetailsComicViewController: UIViewController {
         XkcdManeger.shared.delegate = self
         XkcdManeger.shared.getComic(withID: id)
     }
+
+    // MARK: - Private
 
     private func setUpButtonImage() {
         randomButton.setImage(UIImage(named: "shuffle"), for: .normal)
