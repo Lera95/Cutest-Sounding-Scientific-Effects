@@ -4,23 +4,29 @@ import UIKit
 class ComicsListPresenter {
 
     private var cellsModels: [NetworkComicModel] = []
-    private var filtredCellsModels: [NetworkComicModel] = []
+    private var filteredCellsModels: [NetworkComicModel] = []
     private var comics = ComicsModel()
     private weak var view: ComicsListViewControllerProtocol?
-    
-    var searching: Bool = false
 
     init(view: ComicsListViewControllerProtocol) {
         self.view = view
         self.requestData(searchText: "")
     }
     
-    func filtredCellsModelsCount() -> Int {
-        return filtredCellsModels.count
+    func filteredCellsModelsCount() -> Int {
+        return filteredCellsModels.count
     }
 
     func getViewModel(for row: Int) -> NetworkComicModel {
-        filtredCellsModels[row]
+        filteredCellsModels[row]
+    }
+    
+    func searchBarTextDidChange(searchText: String) {
+        requestData(searchText: searchText)
+    }
+
+    func searchBarCancelButtonClicked() {
+        requestData(searchText: "")
     }
 
     func requestData(searchText: String?) {
@@ -33,7 +39,7 @@ class ComicsListPresenter {
                     return
                 }
                 let cell = searchText.isEmpty ? self.cellsModels : self.cellsModels.filter { $0.safeTitle.contains(searchText) }
-                self.filtredCellsModels = cell
+                self.filteredCellsModels = cell
                 self.view?.reload()
             case .failure(let error):
                 print(error.localizedDescription)

@@ -1,7 +1,7 @@
 import UIKit
 
 protocol DetailsComicViewControllerProtocol: AnyObject{
-    func downloaded(comic: XkcdManegerModel)
+    func downloaded(comic: XkcdManagerModel)
 }
 
 class DetailsComicViewController: UIViewController {
@@ -22,25 +22,25 @@ class DetailsComicViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        presenter.viewDidLoad()
         setUpButtonImage()
         title = titleText
         textLabel.numberOfLines = 0
     }
 
     func setComicId(with id: Int) {
-        presenter.currentComic = id
-        presenter.getCurrrentComic()
+        presenter.setComicId(with: id)
     }
 
     // MARK: - Private
 
     private func setUpButtonImage() {
-        randomButton.setImage(UIImage(named: "shuffle"), for: .normal)
-        previousButton.setImage(UIImage(named: "backward"), for: .normal)
-        nextButton.setImage(UIImage(named: "forward"), for: .normal)
-        lastButton.setImage(UIImage(named: "forward.end"), for: .normal)
-        firstButton.setImage(UIImage(named: "backward.end"), for: .normal)
+        randomButton.setImage(UIImage.shuffle, for: .normal)
+        previousButton.setImage(UIImage.backward, for: .normal)
+        nextButton.setImage(UIImage.forward, for: .normal)
+        lastButton.setImage(UIImage.forwardEnd, for: .normal)
+        firstButton.setImage(UIImage.backwardEnd, for: .normal)
     }
 
     // MARK: - @IBAction
@@ -57,12 +57,12 @@ class DetailsComicViewController: UIViewController {
         presenter.randomTapped()
     }
 
-    @IBAction private func forwTapped(_ sender: Any) {
-        presenter.randomTapped()
+    @IBAction private func forwardTapped(_ sender: Any) {
+        presenter.forwardTapped()
     }
     
     @IBAction private func firstTapped(_ sender: Any) {
-        presenter.forwTapped()
+        presenter.forwardTapped()
     }
 }
 
@@ -70,11 +70,10 @@ class DetailsComicViewController: UIViewController {
 
 extension DetailsComicViewController: DetailsComicViewControllerProtocol {
     
-    func downloaded(comic: XkcdManegerModel) {
+    func downloaded(comic: XkcdManagerModel) {
         DispatchQueue.main.async {
             self.imageView.downloaded(from: comic.img)
             self.textLabel.text = comic.alt
-            self.presenter.currentComic = comic.num
         }
     }
 }

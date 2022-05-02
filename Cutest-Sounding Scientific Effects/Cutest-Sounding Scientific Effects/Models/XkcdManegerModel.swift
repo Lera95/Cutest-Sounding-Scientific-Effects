@@ -1,6 +1,6 @@
 import Foundation
 
-struct XkcdManegerModel: Codable {
+struct XkcdManagerModel: Codable {
     var month: String
     var num: Int
     var link: String

@@ -6,7 +6,7 @@ protocol ComicsListViewControllerProtocol: AnyObject {
 
 class ComicsListViewController: UIViewController {
     
-    @IBOutlet private weak var comicTabelView: UITableView!
+    @IBOutlet private weak var comicTableView: UITableView!
     @IBOutlet private weak var searchBar: UISearchBar!
 
     private let cellHeight = 50.0
@@ -19,19 +19,17 @@ class ComicsListViewController: UIViewController {
         super.viewDidLoad()
         
         title = titleText
-        setupTabelView()
+        setupTableView()
         setupSearchBar()
     }
     
-    private func setupTabelView() {
-        comicTabelView.register(UITableViewCell.self, forCellReuseIdentifier: ComicsListViewController.cellIdentifier)
-        comicTabelView.dataSource = self
-        comicTabelView.delegate = self
+    private func setupTableView() {
+        comicTableView.register(UITableViewCell.self, forCellReuseIdentifier: ComicsListViewController.cellIdentifier)
+        comicTableView.dataSource = self
+        comicTableView.delegate = self
 
-        if presenter.searching == false {
-            DispatchQueue.main.async {
-                self.view.showBlurLoader()
-            }
+        DispatchQueue.main.async {
+            self.view.showBlurLoader()
         }
     }
     
@@ -45,12 +43,12 @@ class ComicsListViewController: UIViewController {
 
 extension ComicsListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presenter.filtredCellsModelsCount()
+        return presenter.filteredCellsModelsCount()
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = comicTabelView.dequeueReusableCell(withIdentifier: ComicsListViewController.cellIdentifier) else {
+        guard let cell = comicTableView.dequeueReusableCell(withIdentifier: ComicsListViewController.cellIdentifier) else {
             return UITableViewCell()
         }
         
@@ -59,7 +57,7 @@ extension ComicsListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        comicTabelView.deselectRow(at: indexPath as IndexPath, animated: true)
+        comicTableView.deselectRow(at: indexPath as IndexPath, animated: true)
         
         let storyboard = UIStoryboard(name: DetailsComicViewController.identifier, bundle: nil)
         let detailsComicViewController = storyboard.instantiateViewController(withIdentifier: DetailsComicViewController.identifier) as! DetailsComicViewController
@@ -83,14 +81,12 @@ extension ComicsListViewController: UITableViewDelegate {
 extension ComicsListViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        presenter.searching = true
-        presenter.requestData(searchText: searchText)
+        presenter.searchBarTextDidChange(searchText: searchText)
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        presenter.searching = false
         searchBar.text = ""
-        presenter.requestData(searchText: "")
+        presenter.searchBarCancelButtonClicked()
     }
 }
 
@@ -101,7 +97,7 @@ extension ComicsListViewController: ComicsListViewControllerProtocol {
     func reload() {
         DispatchQueue.main.async {
             self.view.removeBluerLoader()
-            self.comicTabelView.reloadData()
+            self.comicTableView.reloadData()
         }
     }
 }

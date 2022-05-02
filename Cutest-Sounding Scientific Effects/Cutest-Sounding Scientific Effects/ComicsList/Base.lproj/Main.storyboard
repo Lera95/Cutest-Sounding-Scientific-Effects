@@ -39,7 +39,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="XSo-qj-Dbm"/>
                     <connections>
-                        <outlet property="comicTabelView" destination="Uwe-l0-9c8" id="UOh-e3-JFX"/>
+                        <outlet property="comicTableView" destination="Uwe-l0-9c8" id="fam-Ia-x5l"/>
                         <outlet property="searchBar" destination="kMc-ga-cuS" id="9qX-4P-oLk"/>
                     </connections>
                 </viewController>

@@ -60,7 +60,7 @@
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain"/>
                                                 <connections>
-                                                    <action selector="forwTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="i43-ws-yxH"/>
+                                                    <action selector="forwardTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="7Mt-Jr-HFd"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iwq-xd-eX0">

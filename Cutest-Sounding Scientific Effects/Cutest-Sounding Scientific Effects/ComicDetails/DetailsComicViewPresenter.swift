@@ -2,48 +2,56 @@ import Foundation
 
 class DetailsComicViewPresenter {
 
-    private var comic: XkcdManegerModel?
+    private var comic: XkcdManagerModel?
+    private var currentComic = -1
     private weak var view: DetailsComicViewControllerProtocol?
-    var currentComic = -1
 
     init(view: DetailsComicViewControllerProtocol) {
         self.view = view
-        XkcdManeger.shared.delegate = self
-        XkcdManeger.shared.getLatest()
     }
 
-    func getCurrrentComic() {
-            XkcdManeger.shared.getComic(withID: currentComic)
+    func viewDidLoad() {
+        XkcdManager.shared.delegate = self
+        XkcdManager.shared.getLatest()
+    }
+
+    func getCurrentComic() {
+        XkcdManager.shared.getComic(withID: currentComic)
+    }
+
+    func setComicId(with id: Int) {
+        currentComic = id
+        getCurrentComic()
     }
 
     func prevTapped() {
         if currentComic > 1 {
-            XkcdManeger.shared.getComic(withID: currentComic - 1)
+            XkcdManager.shared.getComic(withID: currentComic - 1)
         }
     }
 
     func lastTapped() {
-        XkcdManeger.shared.getComic(withID: XkcdManeger.latest)
+        XkcdManager.shared.getComic(withID: XkcdManager.latest)
     }
 
     func randomTapped() {
-        XkcdManeger.shared.getRandom()
+        XkcdManager.shared.getRandom()
     }
 
-    func forwTapped() {
-        if currentComic < XkcdManeger.latest {
-            XkcdManeger.shared.getComic(withID: currentComic + 1)
+    func forwardTapped() {
+        if currentComic < XkcdManager.latest {
+            XkcdManager.shared.getComic(withID: currentComic + 1)
         }
     }
 
     func firstTapped() {
-        XkcdManeger.shared.getComic(withID: 1)
+        XkcdManager.shared.getComic(withID: 1)
     }
 }
 
 extension DetailsComicViewPresenter: ComicDelegate {
 
-    func didGetComic(comic: XkcdManegerModel) {
+    func didGetComic(comic: XkcdManagerModel) {
         self.comic = comic
         DispatchQueue.main.async {
             self.view?.downloaded(comic: comic)
