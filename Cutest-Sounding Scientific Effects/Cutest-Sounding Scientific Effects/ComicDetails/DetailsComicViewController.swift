@@ -1,5 +1,9 @@
 import UIKit
 
+protocol DetailsComicViewControllerProtocol: AnyObject{
+    func downloaded(comic: XkcdManegerModel)
+}
+
 class DetailsComicViewController: UIViewController {
 
     @IBOutlet private weak var imageView: UIImageView!
@@ -9,27 +13,24 @@ class DetailsComicViewController: UIViewController {
     @IBOutlet private weak var nextButton: UIButton!
     @IBOutlet private weak var lastButton: UIButton!
     @IBOutlet private weak var firstButton: UIButton!
-    
-    private var currentComic = -1
-    private var comic: XkcdManegerModel?
 
     private let titleText = "Find the best or randomize"
 
     static let identifier = "DetailsComicViewController"
+    
+    private lazy var presenter = DetailsComicViewPresenter(view: self)
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setUpButtonImage()
-        XkcdManeger.shared.getLatest()
         title = titleText
         textLabel.numberOfLines = 0
     }
 
     func setComicId(with id: Int) {
-        currentComic = id
-        XkcdManeger.shared.delegate = self
-        XkcdManeger.shared.getComic(withID: id)
+        presenter.currentComic = id
+        presenter.getCurrrentComic()
     }
 
     // MARK: - Private
@@ -45,44 +46,35 @@ class DetailsComicViewController: UIViewController {
     // MARK: - @IBAction
 
     @IBAction private func prevTapped(_ sender: Any) {
-        if currentComic > 1 {
-            XkcdManeger.shared.getComic(withID: currentComic - 1)
-        }
+        presenter.prevTapped()
     }
 
     @IBAction private func lastTapped(_ sender: Any) {
-        XkcdManeger.shared.getComic(withID: XkcdManeger.latest)
+        presenter.lastTapped()
     }
 
     @IBAction private func randomTapped(_ sender: Any) {
-        XkcdManeger.shared.getRandom()
+        presenter.randomTapped()
     }
 
     @IBAction private func forwTapped(_ sender: Any) {
-        if currentComic < XkcdManeger.latest {
-            XkcdManeger.shared.getComic(withID: currentComic + 1)
-        }
+        presenter.randomTapped()
     }
     
     @IBAction private func firstTapped(_ sender: Any) {
-        XkcdManeger.shared.getComic(withID: 1)
+        presenter.forwTapped()
     }
 }
 
-// MARK: - ComicDelegate
+// MARK: - DetailsComicViewControllerProtocol
 
-extension DetailsComicViewController : ComicDelegate {
-
-    func didGetComic(comic: XkcdManegerModel) {
-        self.comic = comic
+extension DetailsComicViewController: DetailsComicViewControllerProtocol {
+    
+    func downloaded(comic: XkcdManegerModel) {
         DispatchQueue.main.async {
             self.imageView.downloaded(from: comic.img)
             self.textLabel.text = comic.alt
-            self.currentComic = comic.num
+            self.presenter.currentComic = comic.num
         }
-    }
-
-    func didFail(error: Error) {
-        print(error.localizedDescription)
     }
 }
