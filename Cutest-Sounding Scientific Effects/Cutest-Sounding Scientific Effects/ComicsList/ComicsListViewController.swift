@@ -11,6 +11,8 @@ class ComicsListViewController: UIViewController {
 
     private let cellHeight = 50.0
     private let titleText = "Choose your joke"
+
+    private var searchTimer: Timer?
     private lazy var presenter = ComicsListPresenter(view: self)
 
     private static let cellIdentifier = "Cell"
@@ -81,7 +83,15 @@ extension ComicsListViewController: UITableViewDelegate {
 extension ComicsListViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        presenter.searchBarTextDidChange(searchText: searchText)
+        self.searchTimer?.invalidate()
+
+        guard let searchText = searchBar.text else { return }
+
+        searchTimer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { [weak self] (timer) in
+            DispatchQueue.global(qos: .userInteractive).async { [weak self] in
+                self?.presenter.searchBarTextDidChange(searchText: searchText)
+            }
+        })
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
