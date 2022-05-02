@@ -16,7 +16,6 @@
 		9B35E6BE281BFF3B00C40D95 /* ComicModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B35E6BD281BFF3B00C40D95 /* ComicModel.swift */; };
 		9B35E6CD281C102F00C40D95 /* DetailsComicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B35E6CC281C102F00C40D95 /* DetailsComicViewController.swift */; };
 		9B35E6CF281C104000C40D95 /* DetailsComicViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B35E6CE281C104000C40D95 /* DetailsComicViewController.storyboard */; };
-		9B35E6D1281C1DE000C40D95 /* XkcdManeger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B35E6D0281C1DDF00C40D95 /* XkcdManeger.swift */; };
 		9B35E6D3281C1E5B00C40D95 /* XkcdManegerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B35E6D2281C1E5B00C40D95 /* XkcdManegerModel.swift */; };
 		9B35E6D7281F0ADB00C40D95 /* UIImageView+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B35E6D6281F0ADB00C40D95 /* UIImageView+Ex.swift */; };
 		9B35E6D9281F0B2200C40D95 /* BlurLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B35E6D8281F0B2200C40D95 /* BlurLoader.swift */; };
@@ -40,7 +39,6 @@
 		9B35E6BD281BFF3B00C40D95 /* ComicModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicModel.swift; sourceTree = "<group>"; };
 		9B35E6CC281C102F00C40D95 /* DetailsComicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsComicViewController.swift; sourceTree = "<group>"; };
 		9B35E6CE281C104000C40D95 /* DetailsComicViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DetailsComicViewController.storyboard; sourceTree = "<group>"; };
-		9B35E6D0281C1DDF00C40D95 /* XkcdManeger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XkcdManeger.swift; path = ../../../../Desktop/XkcdManeger.swift; sourceTree = "<group>"; };
 		9B35E6D2281C1E5B00C40D95 /* XkcdManegerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XkcdManegerModel.swift; sourceTree = "<group>"; };
 		9B35E6D6281F0ADB00C40D95 /* UIImageView+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Ex.swift"; sourceTree = "<group>"; };
 		9B35E6D8281F0B2200C40D95 /* BlurLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurLoader.swift; sourceTree = "<group>"; };
@@ -129,7 +127,6 @@
 		9B57AB6F281984B00082F383 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				9B35E6D0281C1DDF00C40D95 /* XkcdManeger.swift */,
 				9B35E6E22820436F00C40D95 /* XkcdManeger.swift */,
 				9B57AB80281ABA570082F383 /* NetworkManager.swift */,
 			);
@@ -237,7 +234,6 @@
 				9B2BE0CC28184F920059C03D /* AppDelegate.swift in Sources */,
 				9B35E6D9281F0B2200C40D95 /* BlurLoader.swift in Sources */,
 				9B35E6CD281C102F00C40D95 /* DetailsComicViewController.swift in Sources */,
-				9B35E6D1281C1DE000C40D95 /* XkcdManeger.swift in Sources */,
 				9B57AB83281ABB240082F383 /* XCError.swift in Sources */,
 				9B35E6E128202D5F00C40D95 /* DetailsComicViewPresenter.swift in Sources */,
 				9B2BE0CE28184F920059C03D /* SceneDelegate.swift in Sources */,
