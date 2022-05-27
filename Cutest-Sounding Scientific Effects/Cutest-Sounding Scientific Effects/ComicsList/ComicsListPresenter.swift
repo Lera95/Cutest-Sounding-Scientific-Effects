@@ -6,9 +6,9 @@ class ComicsListPresenter {
     private var cellsModels: [NetworkComicModel] = []
     private var filteredCellsModels: [NetworkComicModel] = []
     private var comics = ComicsModel()
-    private weak var view: ComicsListViewControllerProtocol?
+    private weak var view: ComicsViewControllerProtocol?
 
-    init(view: ComicsListViewControllerProtocol) {
+    init(view: ComicsViewControllerProtocol) {
         self.view = view
         self.requestData(searchText: "")
     }

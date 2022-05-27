@@ -17,16 +17,16 @@ class DetailsComicViewController: UIViewController {
     private let titleText = "Find the best or randomize"
 
     static let identifier = "DetailsComicViewController"
-    
-    private lazy var presenter = DetailsComicViewPresenter(view: self)
+
+    lazy var presenter = DetailsComicViewPresenter(view: self)
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         presenter.viewDidLoad()
-        setUpButtonImage()
         title = titleText
         textLabel.numberOfLines = 0
+        setUpButtonImage()
     }
 
     func setComicId(with id: Int) {
@@ -60,7 +60,7 @@ class DetailsComicViewController: UIViewController {
     @IBAction private func forwardTapped(_ sender: Any) {
         presenter.forwardTapped()
     }
-    
+
     @IBAction private func firstTapped(_ sender: Any) {
         presenter.forwardTapped()
     }
@@ -69,7 +69,7 @@ class DetailsComicViewController: UIViewController {
 // MARK: - DetailsComicViewControllerProtocol
 
 extension DetailsComicViewController: DetailsComicViewControllerProtocol {
-    
+
     func downloaded(comic: XkcdManagerModel) {
         DispatchQueue.main.async {
             self.imageView.downloaded(from: comic.img)

@@ -1,32 +1,32 @@
 import UIKit
 
-protocol ComicsListViewControllerProtocol: AnyObject {
+protocol ComicsViewControllerProtocol: AnyObject {
     func reload()
 }
 
-class ComicsListViewController: UIViewController {
-    
-    @IBOutlet private weak var comicTableView: UITableView!
-    @IBOutlet private weak var searchBar: UISearchBar!
+class ComicsViewController: UIViewController {
+
+    @IBOutlet var searchBar: UISearchBar!
+    @IBOutlet var comicTableView: UITableView!
 
     private let cellHeight = 50.0
     private let titleText = "Choose your joke"
 
     private var searchTimer: Timer?
-    private lazy var presenter = ComicsListPresenter(view: self)
+    lazy var presenter = ComicsListPresenter(view: self)
 
     private static let cellIdentifier = "Cell"
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         title = titleText
         setupTableView()
         setupSearchBar()
     }
-    
+
     private func setupTableView() {
-        comicTableView.register(UITableViewCell.self, forCellReuseIdentifier: ComicsListViewController.cellIdentifier)
+        comicTableView.register(UITableViewCell.self, forCellReuseIdentifier: ComicsViewController.cellIdentifier)
         comicTableView.dataSource = self
         comicTableView.delegate = self
 
@@ -34,7 +34,7 @@ class ComicsListViewController: UIViewController {
             self.view.showBlurLoader()
         }
     }
-    
+
     private func setupSearchBar() {
         searchBar.delegate = self
         self.searchBar.showsCancelButton = true
@@ -43,36 +43,35 @@ class ComicsListViewController: UIViewController {
 
 // MARK: - UITableViewDataSource
 
-extension ComicsListViewController: UITableViewDataSource {
+extension ComicsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return presenter.filteredCellsModelsCount()
     }
-    
-    
+
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = comicTableView.dequeueReusableCell(withIdentifier: ComicsListViewController.cellIdentifier) else {
+        guard let cell = comicTableView.dequeueReusableCell(withIdentifier: ComicsViewController.cellIdentifier) else {
             return UITableViewCell()
         }
-        
+
         cell.textLabel?.text = presenter.getViewModel(for: indexPath.row).title
         return cell
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         comicTableView.deselectRow(at: indexPath as IndexPath, animated: true)
-        
-        let storyboard = UIStoryboard(name: DetailsComicViewController.identifier, bundle: nil)
-        let detailsComicViewController = storyboard.instantiateViewController(withIdentifier: DetailsComicViewController.identifier) as! DetailsComicViewController
+
+        let detailsComicViewController = ModuleBuilder.createDetailsComicViewController() as! DetailsComicViewController
         detailsComicViewController.setComicId(with: presenter.getViewModel(for: indexPath.row).id)
-        
+
         self.navigationController?.pushViewController(detailsComicViewController, animated: true)
     }
 }
 
 // MARK: - UITableViewDelegate
 
-extension ComicsListViewController: UITableViewDelegate {
-    
+extension ComicsViewController: UITableViewDelegate {
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         cellHeight
     }
@@ -80,8 +79,8 @@ extension ComicsListViewController: UITableViewDelegate {
 
 // MARK: - UISearchBarDelegate
 
-extension ComicsListViewController: UISearchBarDelegate {
-    
+extension ComicsViewController: UISearchBarDelegate {
+
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         self.searchTimer?.invalidate()
 
@@ -93,7 +92,7 @@ extension ComicsListViewController: UISearchBarDelegate {
             }
         })
     }
-    
+
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.text = ""
         presenter.searchBarCancelButtonClicked()
@@ -102,7 +101,7 @@ extension ComicsListViewController: UISearchBarDelegate {
 
 // MARK: - ComicsListViewControllerProtocol
 
-extension ComicsListViewController: ComicsListViewControllerProtocol {
+extension ComicsViewController: ComicsViewControllerProtocol {
 
     func reload() {
         DispatchQueue.main.async {
