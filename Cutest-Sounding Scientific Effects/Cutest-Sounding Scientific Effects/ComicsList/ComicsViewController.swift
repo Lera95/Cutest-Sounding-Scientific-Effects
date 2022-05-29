@@ -13,7 +13,7 @@ class ComicsViewController: UIViewController {
     private let titleText = "Choose your joke"
 
     private var searchTimer: Timer?
-    lazy var presenter = ComicsListPresenter(view: self)
+    var presenter: ComicsListPresenterProtocol?
 
     private static let cellIdentifier = "Cell"
 
@@ -45,7 +45,7 @@ class ComicsViewController: UIViewController {
 
 extension ComicsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presenter.filteredCellsModelsCount()
+        return presenter?.filteredCellsModelsCount() ?? 0
     }
 
 
@@ -54,17 +54,13 @@ extension ComicsViewController: UITableViewDataSource {
             return UITableViewCell()
         }
 
-        cell.textLabel?.text = presenter.getViewModel(for: indexPath.row).title
+        cell.textLabel?.text = presenter?.getViewModel(for: indexPath.row).title
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         comicTableView.deselectRow(at: indexPath as IndexPath, animated: true)
-
-        let detailsComicViewController = ModuleBuilder.createDetailsComicViewController() as! DetailsComicViewController
-        detailsComicViewController.setComicId(with: presenter.getViewModel(for: indexPath.row).id)
-
-        self.navigationController?.pushViewController(detailsComicViewController, animated: true)
+        presenter?.tapOnComicCell(id: indexPath.row)
     }
 }
 
@@ -88,14 +84,14 @@ extension ComicsViewController: UISearchBarDelegate {
 
         searchTimer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { [weak self] (timer) in
             DispatchQueue.global(qos: .userInteractive).async { [weak self] in
-                self?.presenter.searchBarTextDidChange(searchText: searchText)
+                self?.presenter?.searchBarTextDidChange(searchText: searchText)
             }
         })
     }
 
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.text = ""
-        presenter.searchBarCancelButtonClicked()
+        presenter?.searchBarCancelButtonClicked()
     }
 }
 

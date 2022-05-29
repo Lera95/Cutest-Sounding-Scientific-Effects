@@ -1,18 +1,34 @@
 import Foundation
 import UIKit
 
-class ComicsListPresenter {
+protocol ComicsListPresenterProtocol {
+    init(view: ComicsViewControllerProtocol, router: RouterProtocol)
+    func tapOnComicCell(id: Int)
+    func filteredCellsModelsCount() -> Int
+    func getViewModel(for row: Int) -> NetworkComicModel 
+    func searchBarTextDidChange(searchText: String)
+    func searchBarCancelButtonClicked()
+    func requestData(searchText: String?)
+}
+
+class ComicsListPresenter: ComicsListPresenterProtocol {
 
     private var cellsModels: [NetworkComicModel] = []
     private var filteredCellsModels: [NetworkComicModel] = []
     private var comics = ComicsModel()
     private weak var view: ComicsViewControllerProtocol?
+    private var router: RouterProtocol?
 
-    init(view: ComicsViewControllerProtocol) {
+    required init(view: ComicsViewControllerProtocol, router: RouterProtocol) {
         self.view = view
+        self.router = router
         self.requestData(searchText: "")
     }
-    
+
+    func tapOnComicCell(id: Int) {
+        router?.showDetailsViewController(with: id)
+    }
+
     func filteredCellsModelsCount() -> Int {
         return filteredCellsModels.count
     }
