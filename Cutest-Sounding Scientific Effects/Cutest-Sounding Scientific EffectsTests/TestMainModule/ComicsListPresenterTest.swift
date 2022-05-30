@@ -5,8 +5,6 @@ class MockView: ComicsViewControllerProtocol {
     func reload() {
 
     }
-
-
 }
 
 class ComicsListPresenterTest: XCTestCase {
@@ -14,11 +12,18 @@ class ComicsListPresenterTest: XCTestCase {
     var view: MockView!
     var comics: ComicsModel!
     var presenter: ComicsListPresenter!
+    var router: RouterProtocol!
+    var navController: UINavigationController!
+    var assembly: AsselderBuilderProtocol!
+
 
     override func setUp() {
         view = MockView()
         comics = ComicsModel()
-        presenter = ComicsListPresenter(view: view)
+        navController = UINavigationController()
+        assembly = AsselderModuleBuilder()
+        router = Router(navigationController: navController, assemblyBuilder: assembly)
+        presenter = ComicsListPresenter(view: view, router: router)
     }
 
     override func tearDown() {

@@ -10,11 +10,17 @@ class DetailsMocView: DetailsComicViewControllerProtocol {
 class DetailsViewControllerTest: XCTestCase {
 
     var view: DetailsMocView!
+    var router: RouterProtocol!
     var comic: XkcdManagerModel!
     var presenter: DetailsComicViewPresenter!
+    var navController: UINavigationController!
+    var assembly: AsselderBuilderProtocol!
 
     override func setUp() {
         view = DetailsMocView()
+        navController = UINavigationController()
+        assembly = AsselderModuleBuilder()
+        router = Router(navigationController: navController, assemblyBuilder: assembly)
         comic = XkcdManagerModel(month: "10",
                                  num: 1,
                                  link: "",
@@ -26,13 +32,16 @@ class DetailsViewControllerTest: XCTestCase {
                                  img: "",
                                  title: "title",
                                  day: "11")
-        presenter = DetailsComicViewPresenter(view: view)
+        presenter = DetailsComicViewPresenter(view: view, router: router, id: 0)
     }
 
     override func tearDown() {
         view = nil
         comic = nil
         presenter = nil
+        navController = nil
+        assembly = nil
+        router = nil
     }
 
     override func setUpWithError() throws {

@@ -10,6 +10,7 @@ protocol RouterProtocol: RouterMain {
     func initialViewController()
     func popToRoot()
     func showDetailsViewController(with id: Int)
+    init(navigationController: UINavigationController, assemblyBuilder: AsselderBuilderProtocol)
 }
 
 class Router: RouterProtocol {
@@ -17,7 +18,7 @@ class Router: RouterProtocol {
     var navigationController: UINavigationController?
     var assemblyBuilder: AsselderBuilderProtocol?
 
-    init(navigationController: UINavigationController, assemblyBuilder: AsselderBuilderProtocol) {
+    required init(navigationController: UINavigationController, assemblyBuilder: AsselderBuilderProtocol) {
         self.navigationController = navigationController
         self.assemblyBuilder = assemblyBuilder
     }
