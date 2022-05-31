@@ -2,6 +2,14 @@ import XCTest
 @testable import Cutest_Sounding_Scientific_Effects
 
 class MockView: ComicsViewControllerProtocol {
+    func clearSearchText() {
+
+    }
+
+    func deselectRow(at indexPath: IndexPath) {
+        
+    }
+
     func reload() {
 
     }

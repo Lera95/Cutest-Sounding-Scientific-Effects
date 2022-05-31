@@ -75,9 +75,9 @@ extension DetailsComicViewPresenter: ComicDelegate {
 
     func didGetComic(comic: XkcdManagerModel) {
         self.comic = comic
-        DispatchQueue.main.async {
-            self.view?.downloaded(comic: comic)
-            self.currentComic = comic.num
+        DispatchQueue.main.async { [weak self] in
+            self?.view?.downloaded(comic: comic)
+            self?.currentComic = comic.num
         }
     }
 

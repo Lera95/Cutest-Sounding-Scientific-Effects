@@ -3,21 +3,22 @@ import UIKit
 
 protocol ComicsListPresenterProtocol {
     init(view: ComicsViewControllerProtocol, router: RouterProtocol)
-    func tapOnComicCell(id: Int)
+    func didSelectedItem(at indexPath: IndexPath)
     func filteredCellsModelsCount() -> Int
-    func getViewModel(for row: Int) -> NetworkComicModel 
+    func getViewModel(for indexPath: IndexPath) -> NetworkComicModel
     func searchBarTextDidChange(searchText: String)
     func searchBarCancelButtonClicked()
     func requestData(searchText: String?)
+    func searchTextWithTimer(searchText: String)
 }
 
 class ComicsListPresenter: ComicsListPresenterProtocol {
 
-    private var cellsModels: [NetworkComicModel] = []
-    private var filteredCellsModels: [NetworkComicModel] = []
-    private var comics = ComicsModel()
+    private var comics: [NetworkComicModel] = []
+    private var filteredComics: [NetworkComicModel] = []
     private weak var view: ComicsViewControllerProtocol?
     private var router: RouterProtocol?
+    private var searchTimer: Timer?
 
     required init(view: ComicsViewControllerProtocol, router: RouterProtocol) {
         self.view = view
@@ -25,16 +26,27 @@ class ComicsListPresenter: ComicsListPresenterProtocol {
         self.requestData(searchText: "")
     }
 
-    func tapOnComicCell(id: Int) {
-        router?.showDetailsViewController(with: id)
+    func searchTextWithTimer(searchText: String) {
+        self.searchTimer?.invalidate()
+
+        searchTimer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { [weak self] (timer) in
+            DispatchQueue.global(qos: .userInteractive).async { [weak self] in
+                self?.searchBarTextDidChange(searchText: searchText)
+            }
+        })
+    }
+
+    func didSelectedItem(at indexPath: IndexPath) {
+        view?.deselectRow(at: indexPath)
+        router?.showDetailsViewController(at: indexPath)
     }
 
     func filteredCellsModelsCount() -> Int {
-        return filteredCellsModels.count
+        return filteredComics.count
     }
 
-    func getViewModel(for row: Int) -> NetworkComicModel {
-        filteredCellsModels[row]
+    func getViewModel(for indexPath: IndexPath) -> NetworkComicModel {
+        filteredComics[indexPath.row]
     }
     
     func searchBarTextDidChange(searchText: String) {
@@ -43,20 +55,21 @@ class ComicsListPresenter: ComicsListPresenterProtocol {
 
     func searchBarCancelButtonClicked() {
         requestData(searchText: "")
+        view?.clearSearchText()
     }
 
     func requestData(searchText: String?) {
-        NetworkManager.shared.getComics(since: 0) { result in
+        NetworkManager.shared.getComics(since: 0) { [weak self] result in
             switch result {
             case .success(let comics):
-                self.comics = comics.reversed()
-                self.cellsModels = comics
+                self?.comics = comics.reversed()
                 guard let searchText = searchText else {
                     return
                 }
-                let cell = searchText.isEmpty ? self.cellsModels : self.cellsModels.filter { $0.safeTitle.contains(searchText) }
-                self.filteredCellsModels = cell
-                self.view?.reload()
+                let cell = searchText.isEmpty ? self?.comics : self?.comics.filter { $0.safeTitle.contains(searchText) }
+                guard let cell = cell else { return }
+                self?.filteredComics = cell
+                self!.view?.reload()
             case .failure(let error):
                 print(error.localizedDescription)
             }

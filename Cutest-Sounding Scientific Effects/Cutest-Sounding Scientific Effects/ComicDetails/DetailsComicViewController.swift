@@ -18,19 +18,19 @@ class DetailsComicViewController: UIViewController {
 
     static let identifier = "DetailsComicViewController"
 
-    var presenter: DetailsComicViewPresenterProtocol?
+    var presenter: DetailsComicViewPresenterProtocol!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        presenter?.viewDidLoad()
+        presenter.viewDidLoad()
         title = titleText
         textLabel.numberOfLines = 0
         setUpButtonImage()
     }
 
     func setComicId(with id: Int) {
-        presenter?.setComicId(with: id)
+        presenter.setComicId(with: id)
     }
 
     // MARK: - Private
@@ -46,23 +46,23 @@ class DetailsComicViewController: UIViewController {
     // MARK: - @IBAction
 
     @IBAction private func prevTapped(_ sender: Any) {
-        presenter?.prevTapped()
+        presenter.prevTapped()
     }
 
     @IBAction private func lastTapped(_ sender: Any) {
-        presenter?.lastTapped()
+        presenter.lastTapped()
     }
 
     @IBAction private func randomTapped(_ sender: Any) {
-        presenter?.randomTapped()
+        presenter.randomTapped()
     }
 
     @IBAction private func forwardTapped(_ sender: Any) {
-        presenter?.forwardTapped()
+        presenter.forwardTapped()
     }
 
     @IBAction private func firstTapped(_ sender: Any) {
-        presenter?.forwardTapped()
+        presenter.forwardTapped()
     }
 }
 
@@ -71,9 +71,9 @@ class DetailsComicViewController: UIViewController {
 extension DetailsComicViewController: DetailsComicViewControllerProtocol {
 
     func downloaded(comic: XkcdManagerModel) {
-        DispatchQueue.main.async {
-            self.imageView.downloaded(from: comic.img)
-            self.textLabel.text = comic.alt
+        DispatchQueue.main.async { [weak self] in
+            self?.imageView.downloaded(from: comic.img)
+            self?.textLabel.text = comic.alt
         }
     }
 }
