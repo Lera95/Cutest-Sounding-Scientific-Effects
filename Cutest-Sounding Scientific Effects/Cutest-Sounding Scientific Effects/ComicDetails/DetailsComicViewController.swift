@@ -28,11 +28,6 @@ class DetailsComicViewController: UIViewController {
         textLabel.numberOfLines = 0
         setUpButtonImage()
     }
-
-    func setComicId(with id: Int) {
-        presenter.setComicId(with: id)
-    }
-
     // MARK: - Private
 
     private func setUpButtonImage() {

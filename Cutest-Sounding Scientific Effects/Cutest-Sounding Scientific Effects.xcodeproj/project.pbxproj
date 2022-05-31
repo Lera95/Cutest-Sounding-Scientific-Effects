@@ -26,6 +26,7 @@
 		9B57AB83281ABB240082F383 /* XCError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B57AB82281ABB240082F383 /* XCError.swift */; };
 		9B57AB8C281B16FF0082F383 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B57AB8B281B16FF0082F383 /* UIView+Extension.swift */; };
 		9BC2BF182843FB5600F8B48E /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC2BF172843FB5600F8B48E /* Router.swift */; };
+		9BC2BF1A28468E4800F8B48E /* UITabelView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC2BF1928468E4800F8B48E /* UITabelView+Extension.swift */; };
 		9BD8C1EA283D3EC000357EAC /* AsselderModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8C1E9283D3EC000357EAC /* AsselderModuleBuilder.swift */; };
 		9BD8C1FD283F998800357EAC /* ComicsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8C1FB283F998800357EAC /* ComicsViewController.swift */; };
 		9BD8C1FE283F998800357EAC /* ComicsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9BD8C1FC283F998800357EAC /* ComicsViewController.xib */; };
@@ -66,6 +67,7 @@
 		9B57AB82281ABB240082F383 /* XCError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCError.swift; sourceTree = "<group>"; };
 		9B57AB8B281B16FF0082F383 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		9BC2BF172843FB5600F8B48E /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		9BC2BF1928468E4800F8B48E /* UITabelView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITabelView+Extension.swift"; sourceTree = "<group>"; };
 		9BD8C1E9283D3EC000357EAC /* AsselderModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsselderModuleBuilder.swift; sourceTree = "<group>"; };
 		9BD8C1FB283F998800357EAC /* ComicsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicsViewController.swift; sourceTree = "<group>"; };
 		9BD8C1FC283F998800357EAC /* ComicsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ComicsViewController.xib; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 				9B57AB8B281B16FF0082F383 /* UIView+Extension.swift */,
 				9B35E6D6281F0ADB00C40D95 /* UIImageView+Extension .swift */,
 				9B35E6E42820510200C40D95 /* UIImage+Extension.swift */,
+				9BC2BF1928468E4800F8B48E /* UITabelView+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -325,6 +328,7 @@
 				9B57AB81281ABA570082F383 /* NetworkManager.swift in Sources */,
 				9B35E6BE281BFF3B00C40D95 /* ComicModel.swift in Sources */,
 				9B2BE0CC28184F920059C03D /* AppDelegate.swift in Sources */,
+				9BC2BF1A28468E4800F8B48E /* UITabelView+Extension.swift in Sources */,
 				9BC2BF182843FB5600F8B48E /* Router.swift in Sources */,
 				9BD8C201283F9D0700357EAC /* DetailsComicViewController.swift in Sources */,
 				9BD8C1FD283F998800357EAC /* ComicsViewController.swift in Sources */,

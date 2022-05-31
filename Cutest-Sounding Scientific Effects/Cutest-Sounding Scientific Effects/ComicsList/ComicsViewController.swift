@@ -4,6 +4,8 @@ protocol ComicsViewControllerProtocol: AnyObject {
     func reload()
     func clearSearchText()
     func deselectRow(at indexPath: IndexPath)
+    func showEmptyMessageLabel()
+    func removeEmptyMessageLabel() 
 }
 
 class ComicsViewController: UIViewController {
@@ -12,6 +14,7 @@ class ComicsViewController: UIViewController {
     @IBOutlet var comicTableView: UITableView!
 
     private let titleText = "Choose your joke"
+    private let emptyText = "No result"
 
     var presenter: ComicsListPresenterProtocol!
 
@@ -27,8 +30,9 @@ class ComicsViewController: UIViewController {
 
     private func setupTableView() {
         comicTableView.register(UITableViewCell.self, forCellReuseIdentifier: ComicsViewController.cellIdentifier)
+        comicTableView.keyboardDismissMode = .onDrag
 
-        DispatchQueue.main.async { [weak self] in 
+        DispatchQueue.main.async { [weak self] in
             self?.view.showBlurLoader()
         }
     }
@@ -42,7 +46,7 @@ class ComicsViewController: UIViewController {
 
 extension ComicsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presenter.filteredCellsModelsCount() 
+        return presenter.filteredCellsModelsCount()
     }
 
 
@@ -100,6 +104,14 @@ extension ComicsViewController: ComicsViewControllerProtocol {
 
     func deselectRow(at indexPath: IndexPath) {
         comicTableView.deselectRow(at: indexPath as IndexPath, animated: true)
+    }
+
+    func showEmptyMessageLabel() {
+        self.comicTableView.setEmptyMessage(emptyText)
+    }
+
+    func removeEmptyMessageLabel() {
+        self.comicTableView.restore()
     }
 }
 

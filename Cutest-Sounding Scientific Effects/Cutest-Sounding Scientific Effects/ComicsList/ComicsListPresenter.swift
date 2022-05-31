@@ -42,6 +42,11 @@ class ComicsListPresenter: ComicsListPresenterProtocol {
     }
 
     func filteredCellsModelsCount() -> Int {
+        if filteredComics.count == 0 {
+            view?.showEmptyMessageLabel()
+        } else {
+            view?.removeEmptyMessageLabel()
+        }
         return filteredComics.count
     }
 

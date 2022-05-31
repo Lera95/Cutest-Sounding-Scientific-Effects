@@ -4,7 +4,6 @@ protocol DetailsComicViewPresenterProtocol {
 
     init(view: DetailsComicViewControllerProtocol, router: RouterProtocol, id: Int)
     func viewDidLoad()
-    func setComicId(with id: Int)
     func prevTapped()
     func getCurrentComic()
     func lastTapped()
