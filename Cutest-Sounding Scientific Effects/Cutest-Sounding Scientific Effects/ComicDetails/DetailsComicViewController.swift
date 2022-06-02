@@ -14,9 +14,9 @@ class DetailsComicViewController: UIViewController {
     @IBOutlet private weak var lastButton: UIButton!
     @IBOutlet private weak var firstButton: UIButton!
 
-    private let titleText = "Find the best or randomize"
+    private let titleText = L10n.DetailsComicViewController.title
 
-    static let identifier = "DetailsComicViewController"
+    static let identifier = L10n.DetailsComicViewController.identifier
 
     var presenter: DetailsComicViewPresenterProtocol!
 

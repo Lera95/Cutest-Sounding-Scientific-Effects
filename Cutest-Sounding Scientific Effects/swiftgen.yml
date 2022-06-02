@@ -1,0 +1,14 @@
+strings:
+  inputs:
+    - Cutest-Sounding Scientific Effects/Resources/en.lproj
+  outputs:
+    - templateName: structured-swift5
+      output: Cutest-Sounding Scientific Effects/Swiftgen/Strings.swift
+xcassets:
+  inputs:
+    - Cutest-Sounding Scientific Effects/Resources/Assets.xcassets
+  outputs:
+    - templateName: swift5
+      params:
+        forceProvidesNamespaces: true
+      output: Cutest-Sounding Scientific Effects/Swiftgen/Assets.swift

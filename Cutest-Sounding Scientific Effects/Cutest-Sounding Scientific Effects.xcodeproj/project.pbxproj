@@ -25,10 +25,12 @@
 		9B57AB81281ABA570082F383 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B57AB80281ABA570082F383 /* NetworkManager.swift */; };
 		9B57AB83281ABB240082F383 /* XCError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B57AB82281ABB240082F383 /* XCError.swift */; };
 		9B57AB8C281B16FF0082F383 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B57AB8B281B16FF0082F383 /* UIView+Extension.swift */; };
+		9B826EB12849185A00712A60 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9B826EAF2849185A00712A60 /* Localizable.strings */; };
+		9B826ECA28492AC800712A60 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B826EC828492AC800712A60 /* Strings.swift */; };
+		9B826ECB28492AC800712A60 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B826EC928492AC800712A60 /* Assets.swift */; };
 		9BC2BF182843FB5600F8B48E /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC2BF172843FB5600F8B48E /* Router.swift */; };
 		9BC2BF1A28468E4800F8B48E /* UITabelView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC2BF1928468E4800F8B48E /* UITabelView+Extension.swift */; };
 		9BCD32562848CB4300F7BAA9 /* CutestTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BCD32552848CB4300F7BAA9 /* CutestTimer.swift */; };
-		9BCD32582848CB4800F7BAA9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9BCD32572848CB4800F7BAA9 /* Localizable.strings */; };
 		9BD8C1EA283D3EC000357EAC /* AsselderModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8C1E9283D3EC000357EAC /* AsselderModuleBuilder.swift */; };
 		9BD8C1FD283F998800357EAC /* ComicsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8C1FB283F998800357EAC /* ComicsViewController.swift */; };
 		9BD8C1FE283F998800357EAC /* ComicsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9BD8C1FC283F998800357EAC /* ComicsViewController.xib */; };
@@ -68,10 +70,12 @@
 		9B57AB80281ABA570082F383 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		9B57AB82281ABB240082F383 /* XCError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCError.swift; sourceTree = "<group>"; };
 		9B57AB8B281B16FF0082F383 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		9B826EB02849185A00712A60 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		9B826EC828492AC800712A60 /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
+		9B826EC928492AC800712A60 /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		9BC2BF172843FB5600F8B48E /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		9BC2BF1928468E4800F8B48E /* UITabelView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITabelView+Extension.swift"; sourceTree = "<group>"; };
 		9BCD32552848CB4300F7BAA9 /* CutestTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CutestTimer.swift; path = ../../../../Desktop/CutestTimer.swift; sourceTree = "<group>"; };
-		9BCD32572848CB4800F7BAA9 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = ../../../Desktop/Localizable.strings; sourceTree = "<group>"; };
 		9BD8C1E9283D3EC000357EAC /* AsselderModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsselderModuleBuilder.swift; sourceTree = "<group>"; };
 		9BD8C1FB283F998800357EAC /* ComicsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicsViewController.swift; sourceTree = "<group>"; };
 		9BD8C1FC283F998800357EAC /* ComicsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ComicsViewController.xib; sourceTree = "<group>"; };
@@ -138,16 +142,16 @@
 			children = (
 				9BC2BF172843FB5600F8B48E /* Router.swift */,
 				9BD8C1E9283D3EC000357EAC /* AsselderModuleBuilder.swift */,
+				9B826EC72849296600712A60 /* Swiftgen */,
 				9B35E6D4281F078700C40D95 /* ComicsList */,
 				9B35E6C1281C05E800C40D95 /* ComicDetails */,
 				9B35E6D5281F0A8700C40D95 /* Extensions */,
 				9B57AB7B281AB8A40082F383 /* Utilits */,
 				9B57AB6F281984B00082F383 /* Networking */,
 				9B59F05F28187B79000C3C1B /* Models */,
+				9B826EC52849267700712A60 /* Resources */,
 				9B2BE0CB28184F920059C03D /* AppDelegate.swift */,
 				9B2BE0CD28184F920059C03D /* SceneDelegate.swift */,
-				9BCD32572848CB4800F7BAA9 /* Localizable.strings */,
-				9B2BE0D428184F960059C03D /* Assets.xcassets */,
 				9B2BE0D628184F960059C03D /* LaunchScreen.storyboard */,
 				9B2BE0D928184F960059C03D /* Info.plist */,
 			);
@@ -213,6 +217,24 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		9B826EC52849267700712A60 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				9B826EAF2849185A00712A60 /* Localizable.strings */,
+				9B2BE0D428184F960059C03D /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		9B826EC72849296600712A60 /* Swiftgen */ = {
+			isa = PBXGroup;
+			children = (
+				9B826EC928492AC800712A60 /* Assets.swift */,
+				9B826EC828492AC800712A60 /* Strings.swift */,
+			);
+			path = Swiftgen;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -241,6 +263,7 @@
 				9B2BE0C428184F920059C03D /* Sources */,
 				9B2BE0C528184F920059C03D /* Frameworks */,
 				9B2BE0C628184F920059C03D /* Resources */,
+				9B826EBF28491EDD00712A60 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -301,7 +324,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9BCD32582848CB4800F7BAA9 /* Localizable.strings in Resources */,
+				9B826EB12849185A00712A60 /* Localizable.strings in Resources */,
 				9BD8C202283F9D0700357EAC /* DetailsComicViewController.xib in Resources */,
 				9BD8C1FE283F998800357EAC /* ComicsViewController.xib in Resources */,
 				9B2BE0D828184F960059C03D /* LaunchScreen.storyboard in Resources */,
@@ -310,6 +333,29 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		9B826EBF28491EDD00712A60 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Resources/en.lproj/Localizable.strings ",
+				"$(SRCROOT)/Resources/Assets.xcassets",
+				$PROJECT_DIR/TARGET_NAME/swiftgen.yml,
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftgen >/dev/null; then\n  swiftgen\nelse\n  echo \"warning: SwiftGen not installed, download it from https://github.com/SwiftGen/SwiftGen\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		9B16FD0228413A3E00CCEE01 /* Sources */ = {
@@ -328,11 +374,13 @@
 			files = (
 				9B35E6DD281F11DE00C40D95 /* ComicsListPresenter.swift in Sources */,
 				9B35E6D3281C1E5B00C40D95 /* XkcdManegerModel.swift in Sources */,
+				9B826ECA28492AC800712A60 /* Strings.swift in Sources */,
 				9BCD32562848CB4300F7BAA9 /* CutestTimer.swift in Sources */,
 				9B57AB8C281B16FF0082F383 /* UIView+Extension.swift in Sources */,
 				9B35E6E52820510200C40D95 /* UIImage+Extension.swift in Sources */,
 				9B35E6D7281F0ADB00C40D95 /* UIImageView+Extension .swift in Sources */,
 				9B35E6E32820436F00C40D95 /* XkcdManeger.swift in Sources */,
+				9B826ECB28492AC800712A60 /* Assets.swift in Sources */,
 				9B57AB81281ABA570082F383 /* NetworkManager.swift in Sources */,
 				9B35E6BE281BFF3B00C40D95 /* ComicModel.swift in Sources */,
 				9B2BE0CC28184F920059C03D /* AppDelegate.swift in Sources */,
@@ -365,6 +413,14 @@
 				9B2BE0D728184F960059C03D /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		9B826EAF2849185A00712A60 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9B826EB02849185A00712A60 /* en */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

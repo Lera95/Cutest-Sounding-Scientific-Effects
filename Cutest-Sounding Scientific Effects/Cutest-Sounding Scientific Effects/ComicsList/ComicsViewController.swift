@@ -13,12 +13,12 @@ class ComicsViewController: UIViewController {
     @IBOutlet var searchBar: UISearchBar!
     @IBOutlet var comicTableView: UITableView!
 
-    private let titleText = "Choose your joke"
-    private let emptyText = "No result"
+    private let titleText = L10n.ComicsViewController.title
+    private let emptyText = L10n.ComicsViewController.emptyTitle
 
     var presenter: ComicsListPresenterProtocol!
 
-    private static let cellIdentifier = "Cell"
+    private static let cellIdentifier = L10n.ComicsViewController.cellIdentifier
 
     override func viewDidLoad() {
         super.viewDidLoad()
