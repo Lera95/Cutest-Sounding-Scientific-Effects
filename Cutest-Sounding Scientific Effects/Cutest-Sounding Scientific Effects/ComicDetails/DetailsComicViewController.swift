@@ -29,7 +29,7 @@ class DetailsComicViewController: UIViewController {
         setUpButtonImage()
     }
     // MARK: - Private
-
+    
     private func setUpButtonImage() {
         randomButton.setImage(UIImage.shuffle, for: .normal)
         previousButton.setImage(UIImage.backward, for: .normal)

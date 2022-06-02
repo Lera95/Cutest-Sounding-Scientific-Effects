@@ -18,7 +18,7 @@ class ComicsListPresenter: ComicsListPresenterProtocol {
     private var filteredComics: [NetworkComicModel] = []
     private weak var view: ComicsViewControllerProtocol?
     private var router: RouterProtocol?
-    private var searchTimer: Timer?
+    private var searchTimer: CutestTimer?
 
     required init(view: ComicsViewControllerProtocol, router: RouterProtocol) {
         self.view = view
@@ -27,12 +27,9 @@ class ComicsListPresenter: ComicsListPresenterProtocol {
     }
 
     func searchTextWithTimer(searchText: String) {
-        self.searchTimer?.invalidate()
-
-        searchTimer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { [weak self] (timer) in
-            DispatchQueue.global(qos: .userInteractive).async { [weak self] in
-                self?.searchBarTextDidChange(searchText: searchText)
-            }
+        searchTimer = CutestTimer() 
+        searchTimer?.start(withTimeInterval: 1, onFire: {
+            self.searchBarTextDidChange(searchText: searchText)
         })
     }
 

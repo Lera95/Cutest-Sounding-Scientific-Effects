@@ -1,0 +1,10 @@
+// MARK: - ComicsViewController
+
+"Choose your joke" = "Choose your joke";
+"No result" = "No result";
+"Cell" = "Cell";
+
+// MARK: - DetailsComicViewController
+
+"Find the best or randomize" = "Find the best or randomize";
+"DetailsComicViewController" = "DetailsComicViewController";
