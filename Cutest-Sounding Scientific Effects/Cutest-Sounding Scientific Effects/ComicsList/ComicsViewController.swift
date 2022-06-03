@@ -26,6 +26,7 @@ class ComicsViewController: UIViewController {
         title = titleText
         setupTableView()
         setupSearchBar()
+        presenter.viewDidLoad()
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.keyboardDidShow(notification:)),
                                                name: UIResponder.keyboardDidShowNotification,

@@ -10,6 +10,7 @@ protocol ComicsListPresenterProtocol {
     func searchBarCancelButtonClicked()
     func requestData(searchText: String?)
     func searchTextWithTimer(searchText: String)
+    func viewDidLoad()
 }
 
 class ComicsListPresenter: ComicsListPresenterProtocol {
@@ -23,6 +24,9 @@ class ComicsListPresenter: ComicsListPresenterProtocol {
     required init(view: ComicsViewControllerProtocol, router: RouterProtocol) {
         self.view = view
         self.router = router
+    }
+
+    func viewDidLoad() {
         self.requestData(searchText: "")
     }
 
