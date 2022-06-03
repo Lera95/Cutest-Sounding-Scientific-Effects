@@ -1,4 +1,5 @@
 import UIKit
+import Kingfisher
 
 protocol DetailsComicViewControllerProtocol: AnyObject{
     func downloaded(comic: XkcdManagerModel)
@@ -31,11 +32,11 @@ class DetailsComicViewController: UIViewController {
     // MARK: - Private
     
     private func setUpButtonImage() {
-        randomButton.setImage(UIImage.shuffle, for: .normal)
-        previousButton.setImage(UIImage.backward, for: .normal)
-        nextButton.setImage(UIImage.forward, for: .normal)
-        lastButton.setImage(UIImage.forwardEnd, for: .normal)
-        firstButton.setImage(UIImage.backwardEnd, for: .normal)
+        randomButton.setImage(Asset.shuffle.image, for: .normal)
+        previousButton.setImage(Asset.backward.image, for: .normal)
+        nextButton.setImage(Asset.forward.image, for: .normal)
+        lastButton.setImage(Asset.forwardEnd.image, for: .normal)
+        firstButton.setImage(Asset.backwardEnd.image, for: .normal)
     }
 
     // MARK: - @IBAction
@@ -67,7 +68,9 @@ extension DetailsComicViewController: DetailsComicViewControllerProtocol {
 
     func downloaded(comic: XkcdManagerModel) {
         DispatchQueue.main.async { [weak self] in
-            self?.imageView.downloaded(from: comic.img)
+            let url = URL(string: comic.img)
+            self?.imageView.kf.indicatorType = .activity
+            self?.imageView.kf.setImage(with: url)
             self?.textLabel.text = comic.alt
         }
     }

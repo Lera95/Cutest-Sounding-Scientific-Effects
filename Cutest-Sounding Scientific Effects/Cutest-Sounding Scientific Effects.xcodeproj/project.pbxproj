@@ -16,18 +16,17 @@
 		9B2BE0D828184F960059C03D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B2BE0D628184F960059C03D /* LaunchScreen.storyboard */; };
 		9B35E6BE281BFF3B00C40D95 /* ComicModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B35E6BD281BFF3B00C40D95 /* ComicModel.swift */; };
 		9B35E6D3281C1E5B00C40D95 /* XkcdManegerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B35E6D2281C1E5B00C40D95 /* XkcdManegerModel.swift */; };
-		9B35E6D7281F0ADB00C40D95 /* UIImageView+Extension .swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B35E6D6281F0ADB00C40D95 /* UIImageView+Extension .swift */; };
 		9B35E6D9281F0B2200C40D95 /* BlurLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B35E6D8281F0B2200C40D95 /* BlurLoader.swift */; };
 		9B35E6DD281F11DE00C40D95 /* ComicsListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B35E6DC281F11DE00C40D95 /* ComicsListPresenter.swift */; };
 		9B35E6E128202D5F00C40D95 /* DetailsComicViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B35E6E028202D5F00C40D95 /* DetailsComicViewPresenter.swift */; };
 		9B35E6E32820436F00C40D95 /* XkcdManeger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B35E6E22820436F00C40D95 /* XkcdManeger.swift */; };
-		9B35E6E52820510200C40D95 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B35E6E42820510200C40D95 /* UIImage+Extension.swift */; };
 		9B57AB81281ABA570082F383 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B57AB80281ABA570082F383 /* NetworkManager.swift */; };
 		9B57AB83281ABB240082F383 /* XCError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B57AB82281ABB240082F383 /* XCError.swift */; };
-		9B57AB8C281B16FF0082F383 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B57AB8B281B16FF0082F383 /* UIView+Extension.swift */; };
 		9B826EB12849185A00712A60 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9B826EAF2849185A00712A60 /* Localizable.strings */; };
 		9B826ECA28492AC800712A60 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B826EC828492AC800712A60 /* Strings.swift */; };
 		9B826ECB28492AC800712A60 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B826EC928492AC800712A60 /* Assets.swift */; };
+		9B826ECE284A356C00712A60 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 9B826ECD284A356C00712A60 /* Kingfisher */; };
+		9B826ED0284A3C4100712A60 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B826ECF284A3C4100712A60 /* UIView+Extension.swift */; };
 		9BC2BF182843FB5600F8B48E /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC2BF172843FB5600F8B48E /* Router.swift */; };
 		9BC2BF1A28468E4800F8B48E /* UITabelView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC2BF1928468E4800F8B48E /* UITabelView+Extension.swift */; };
 		9BCD32562848CB4300F7BAA9 /* CutestTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BCD32552848CB4300F7BAA9 /* CutestTimer.swift */; };
@@ -61,18 +60,16 @@
 		9B2BE0D928184F960059C03D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9B35E6BD281BFF3B00C40D95 /* ComicModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicModel.swift; sourceTree = "<group>"; };
 		9B35E6D2281C1E5B00C40D95 /* XkcdManegerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XkcdManegerModel.swift; sourceTree = "<group>"; };
-		9B35E6D6281F0ADB00C40D95 /* UIImageView+Extension .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension .swift"; sourceTree = "<group>"; };
 		9B35E6D8281F0B2200C40D95 /* BlurLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurLoader.swift; sourceTree = "<group>"; };
 		9B35E6DC281F11DE00C40D95 /* ComicsListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicsListPresenter.swift; sourceTree = "<group>"; };
 		9B35E6E028202D5F00C40D95 /* DetailsComicViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsComicViewPresenter.swift; sourceTree = "<group>"; };
 		9B35E6E22820436F00C40D95 /* XkcdManeger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XkcdManeger.swift; sourceTree = "<group>"; };
-		9B35E6E42820510200C40D95 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		9B57AB80281ABA570082F383 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		9B57AB82281ABB240082F383 /* XCError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCError.swift; sourceTree = "<group>"; };
-		9B57AB8B281B16FF0082F383 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		9B826EB02849185A00712A60 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		9B826EC828492AC800712A60 /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		9B826EC928492AC800712A60 /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
+		9B826ECF284A3C4100712A60 /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+Extension.swift"; path = "../../../../.Trash/UIView+Extension.swift"; sourceTree = "<group>"; };
 		9BC2BF172843FB5600F8B48E /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		9BC2BF1928468E4800F8B48E /* UITabelView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITabelView+Extension.swift"; sourceTree = "<group>"; };
 		9BCD32552848CB4300F7BAA9 /* CutestTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CutestTimer.swift; path = ../../../../Desktop/CutestTimer.swift; sourceTree = "<group>"; };
@@ -95,6 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B826ECE284A356C00712A60 /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -181,9 +179,7 @@
 		9B35E6D5281F0A8700C40D95 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				9B57AB8B281B16FF0082F383 /* UIView+Extension.swift */,
-				9B35E6D6281F0ADB00C40D95 /* UIImageView+Extension .swift */,
-				9B35E6E42820510200C40D95 /* UIImage+Extension.swift */,
+				9B826ECF284A3C4100712A60 /* UIView+Extension.swift */,
 				9BC2BF1928468E4800F8B48E /* UITabelView+Extension.swift */,
 			);
 			path = Extensions;
@@ -270,6 +266,9 @@
 			dependencies = (
 			);
 			name = "Cutest-Sounding Scientific Effects";
+			packageProductDependencies = (
+				9B826ECD284A356C00712A60 /* Kingfisher */,
+			);
 			productName = "Cutest-Sounding Scientific Effects";
 			productReference = 9B2BE0C828184F920059C03D /* Cutest-Sounding Scientific Effects.app */;
 			productType = "com.apple.product-type.application";
@@ -302,6 +301,9 @@
 				Base,
 			);
 			mainGroup = 9B2BE0BF28184F920059C03D;
+			packageReferences = (
+				9B826ECC284A356C00712A60 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+			);
 			productRefGroup = 9B2BE0C928184F920059C03D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -376,9 +378,6 @@
 				9B35E6D3281C1E5B00C40D95 /* XkcdManegerModel.swift in Sources */,
 				9B826ECA28492AC800712A60 /* Strings.swift in Sources */,
 				9BCD32562848CB4300F7BAA9 /* CutestTimer.swift in Sources */,
-				9B57AB8C281B16FF0082F383 /* UIView+Extension.swift in Sources */,
-				9B35E6E52820510200C40D95 /* UIImage+Extension.swift in Sources */,
-				9B35E6D7281F0ADB00C40D95 /* UIImageView+Extension .swift in Sources */,
 				9B35E6E32820436F00C40D95 /* XkcdManeger.swift in Sources */,
 				9B826ECB28492AC800712A60 /* Assets.swift in Sources */,
 				9B57AB81281ABA570082F383 /* NetworkManager.swift in Sources */,
@@ -392,6 +391,7 @@
 				9BD8C1EA283D3EC000357EAC /* AsselderModuleBuilder.swift in Sources */,
 				9B57AB83281ABB240082F383 /* XCError.swift in Sources */,
 				9B35E6E128202D5F00C40D95 /* DetailsComicViewPresenter.swift in Sources */,
+				9B826ED0284A3C4100712A60 /* UIView+Extension.swift in Sources */,
 				9B2BE0CE28184F920059C03D /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -665,6 +665,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		9B826ECC284A356C00712A60 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		9B826ECD284A356C00712A60 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9B826ECC284A356C00712A60 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 9B2BE0C028184F920059C03D /* Project object */;
 }
