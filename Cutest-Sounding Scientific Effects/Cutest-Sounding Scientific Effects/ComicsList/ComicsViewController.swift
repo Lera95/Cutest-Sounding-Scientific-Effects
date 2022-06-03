@@ -5,7 +5,7 @@ protocol ComicsViewControllerProtocol: AnyObject {
     func clearSearchText()
     func deselectRow(at indexPath: IndexPath)
     func showEmptyMessageLabel()
-    func removeEmptyMessageLabel() 
+    func removeEmptyMessageLabel()
 }
 
 class ComicsViewController: UIViewController {
@@ -26,12 +26,20 @@ class ComicsViewController: UIViewController {
         title = titleText
         setupTableView()
         setupSearchBar()
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.keyboardDidShow(notification:)),
+                                               name: UIResponder.keyboardDidShowNotification,
+                                               object: nil)
+
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.keyboardWillBeHidden(notification:)),
+                                               name: UIResponder.keyboardWillHideNotification,
+                                               object: nil)
     }
 
     private func setupTableView() {
         comicTableView.register(UITableViewCell.self, forCellReuseIdentifier: ComicsViewController.cellIdentifier)
-        comicTableView.keyboardDismissMode = .onDrag
-
+        comicTableView.keyboardDismissMode = .interactive
         DispatchQueue.main.async { [weak self] in
             self?.view.showBlurLoader()
         }
@@ -39,6 +47,20 @@ class ComicsViewController: UIViewController {
 
     private func setupSearchBar() {
         self.searchBar.showsCancelButton = true
+    }
+
+    @objc private func keyboardDidShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyboardSize.height, right: 0.0)
+            self.comicTableView.contentInset = contentInsets
+            self.comicTableView.scrollIndicatorInsets = contentInsets
+        }
+    }
+
+    @objc private func keyboardWillBeHidden(notification: NSNotification) {
+        let contentInsets = UIEdgeInsets.zero
+        self.comicTableView.contentInset = contentInsets
+        self.comicTableView.scrollIndicatorInsets = contentInsets
     }
 }
 

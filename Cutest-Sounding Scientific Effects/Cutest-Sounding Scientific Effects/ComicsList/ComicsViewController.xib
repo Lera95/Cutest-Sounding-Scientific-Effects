@@ -39,11 +39,11 @@
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="Dbm-i4-kK4" firstAttribute="top" secondItem="eeu-DG-jKQ" secondAttribute="bottom" constant="10" id="Ugr-oS-zqG"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Dbm-i4-kK4" secondAttribute="bottom" constant="10" id="HaV-b1-qcZ"/>
                 <constraint firstItem="eeu-DG-jKQ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="gut-iV-aOf"/>
+                <constraint firstItem="Dbm-i4-kK4" firstAttribute="top" secondItem="eeu-DG-jKQ" secondAttribute="bottom" constant="10" id="haR-uk-wjh"/>
                 <constraint firstItem="Dbm-i4-kK4" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="jKk-Ol-ona"/>
                 <constraint firstItem="Dbm-i4-kK4" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="ngH-Le-iGN"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Dbm-i4-kK4" secondAttribute="bottom" constant="10" id="oCr-Sm-95P"/>
                 <constraint firstItem="eeu-DG-jKQ" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" constant="-10" id="pEf-Aa-ghE"/>
                 <constraint firstItem="eeu-DG-jKQ" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="10" id="rHu-dy-SPM"/>
             </constraints>
