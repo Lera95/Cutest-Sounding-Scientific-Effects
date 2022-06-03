@@ -5,7 +5,14 @@ protocol ComicDelegate: AnyObject {
     func didFail(error: Error)
 }
 
-class XkcdManager {
+protocol XkcdManagerProtocol {
+    var delegate: ComicDelegate? { get set }
+    func getLatest()
+    func getComic(withID id: Int)
+    func getRandom()
+}
+
+class XkcdManager: XkcdManagerProtocol {
 
     static let shared = XkcdManager()
     weak var delegate: ComicDelegate?

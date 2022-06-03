@@ -2,7 +2,6 @@ import Foundation
 
 protocol DetailsComicViewPresenterProtocol {
 
-    init(view: DetailsComicViewControllerProtocol, router: RouterProtocol, id: Int)
     func viewDidLoad()
     func prevTapped()
     func getCurrentComic()
@@ -19,17 +18,22 @@ class DetailsComicViewPresenter: DetailsComicViewPresenterProtocol {
     private var currentComic = -1
     private weak var view: DetailsComicViewControllerProtocol?
     private var router: RouterProtocol?
+    private var xkcdManager: XkcdManagerProtocol
 
-    required init(view: DetailsComicViewControllerProtocol, router: RouterProtocol, id: Int) {
+    init(view: DetailsComicViewControllerProtocol,
+                  router: RouterProtocol,
+                  id: Int,
+         xkcdManager: XkcdManagerProtocol = XkcdManager.shared) {
         self.view = view
         self.router = router
+        self.xkcdManager = xkcdManager
         self.setComicId(with: id)
     }
 
 
     func viewDidLoad() {
-        XkcdManager.shared.delegate = self
-        XkcdManager.shared.getLatest()
+        xkcdManager.delegate = self
+        xkcdManager.getLatest()
     }
 
     func tap() {

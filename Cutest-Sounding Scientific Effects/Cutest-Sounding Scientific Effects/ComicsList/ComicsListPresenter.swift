@@ -2,7 +2,6 @@ import Foundation
 import UIKit
 
 protocol ComicsListPresenterProtocol {
-    init(view: ComicsViewControllerProtocol, router: RouterProtocol)
     func didSelectedItem(at indexPath: IndexPath)
     func filteredCellsModelsCount() -> Int
     func getViewModel(for indexPath: IndexPath) -> NetworkComicModel
@@ -20,10 +19,14 @@ class ComicsListPresenter: ComicsListPresenterProtocol {
     private weak var view: ComicsViewControllerProtocol?
     private var router: RouterProtocol?
     private var searchTimer: CutestTimer?
+    private var networkManager: NetworkManagerProtocol
 
-    required init(view: ComicsViewControllerProtocol, router: RouterProtocol) {
+    required init(view: ComicsViewControllerProtocol,
+                  router: RouterProtocol,
+                  networkManager: NetworkManagerProtocol = NetworkManager.shared) {
         self.view = view
         self.router = router
+        self.networkManager = networkManager
     }
 
     func viewDidLoad() {
@@ -65,7 +68,7 @@ class ComicsListPresenter: ComicsListPresenterProtocol {
     }
 
     func requestData(searchText: String?) {
-        NetworkManager.shared.getComics(since: 0) { [weak self] result in
+        networkManager.getComics(since: 0) { [weak self] result in
             switch result {
             case .success(let comics):
                 self?.comics = comics.reversed()
