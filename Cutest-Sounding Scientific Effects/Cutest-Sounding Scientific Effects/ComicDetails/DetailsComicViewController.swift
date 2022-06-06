@@ -2,7 +2,8 @@ import UIKit
 import Kingfisher
 
 protocol DetailsComicViewControllerProtocol: AnyObject{
-    func downloaded(comic: XkcdManagerModel)
+    func setTitleLabel(text: String)
+    func setComicsImage(with url: URL)
 }
 
 class DetailsComicViewController: UIViewController {
@@ -66,12 +67,15 @@ class DetailsComicViewController: UIViewController {
 
 extension DetailsComicViewController: DetailsComicViewControllerProtocol {
 
-    func downloaded(comic: XkcdManagerModel) {
+    func setTitleLabel(text: String) {
         DispatchQueue.main.async { [weak self] in
-            let url = URL(string: comic.img)
+            self?.textLabel.text = text
+        }
+    }
+    func setComicsImage(with url: URL) {
+        DispatchQueue.main.async { [weak self] in
             self?.imageView.kf.indicatorType = .activity
             self?.imageView.kf.setImage(with: url)
-            self?.textLabel.text = comic.alt
         }
     }
 }

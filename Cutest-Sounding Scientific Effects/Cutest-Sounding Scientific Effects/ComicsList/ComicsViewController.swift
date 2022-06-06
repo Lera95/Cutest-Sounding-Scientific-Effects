@@ -51,11 +51,13 @@ class ComicsViewController: UIViewController {
     }
 
     @objc private func keyboardDidShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyboardSize.height, right: 0.0)
-            self.comicTableView.contentInset = contentInsets
-            self.comicTableView.scrollIndicatorInsets = contentInsets
+        guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue else {
+            return
         }
+        
+        let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyboardSize.height, right: 0.0)
+        self.comicTableView.contentInset = contentInsets
+        self.comicTableView.scrollIndicatorInsets = contentInsets
     }
 
     @objc private func keyboardWillBeHidden(notification: NSNotification) {

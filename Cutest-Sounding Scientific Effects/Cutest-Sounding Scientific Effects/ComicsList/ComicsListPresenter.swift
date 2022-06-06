@@ -14,7 +14,6 @@ protocol ComicsListPresenterProtocol {
 
 class ComicsListPresenter: ComicsListPresenterProtocol {
 
-    private var comics: [NetworkComicModel] = []
     private var filteredComics: [NetworkComicModel] = []
     private weak var view: ComicsViewControllerProtocol?
     private var router: RouterProtocol?
@@ -34,7 +33,7 @@ class ComicsListPresenter: ComicsListPresenterProtocol {
     }
 
     func searchTextWithTimer(searchText: String) {
-        searchTimer = CutestTimer() 
+        searchTimer = CutestTimer()
         searchTimer?.start(withTimeInterval: 1, onFire: {
             self.searchBarTextDidChange(searchText: searchText)
         })
@@ -46,12 +45,7 @@ class ComicsListPresenter: ComicsListPresenterProtocol {
     }
 
     func filteredCellsModelsCount() -> Int {
-        if filteredComics.count == 0 {
-            view?.showEmptyMessageLabel()
-        } else {
-            view?.removeEmptyMessageLabel()
-        }
-        return filteredComics.count
+        filteredComics.count
     }
 
     func getViewModel(for indexPath: IndexPath) -> NetworkComicModel {
@@ -71,16 +65,27 @@ class ComicsListPresenter: ComicsListPresenterProtocol {
         networkManager.getComics(since: 0) { [weak self] result in
             switch result {
             case .success(let comics):
-                self?.comics = comics.reversed()
+                self?.filteredComics = comics.reversed()
                 guard let searchText = searchText else {
                     return
                 }
-                let cell = searchText.isEmpty ? self?.comics : self?.comics.filter { $0.safeTitle.contains(searchText) }
-                guard let cell = cell else { return }
-                self?.filteredComics = cell
+                let comics = searchText.isEmpty ? self?.filteredComics : self?.filteredComics.filter { $0.safeTitle.contains(searchText) }
+                guard let comics = comics else { return }
+                self?.filteredComics = comics
+                self?.emptyPlaceHolder(filteredComics: self?.filteredComics ?? [])
                 self!.view?.reload()
             case .failure(let error):
                 print(error.localizedDescription)
+            }
+        }
+    }
+
+    func emptyPlaceHolder(filteredComics: [NetworkComicModel]) {
+        DispatchQueue.main.async { [weak self] in
+            if filteredComics.isEmpty {
+                self?.view?.showEmptyMessageLabel()
+            } else {
+                self?.view?.removeEmptyMessageLabel()
             }
         }
     }

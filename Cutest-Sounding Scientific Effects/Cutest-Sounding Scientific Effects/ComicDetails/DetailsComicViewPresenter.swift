@@ -79,7 +79,10 @@ extension DetailsComicViewPresenter: ComicDelegate {
     func didGetComic(comic: XkcdManagerModel) {
         self.comic = comic
         DispatchQueue.main.async { [weak self] in
-            self?.view?.downloaded(comic: comic)
+            guard let url = URL(string: comic.img) else { return }
+            
+            self?.view?.setTitleLabel(text: comic.title)
+            self?.view?.setComicsImage(with: url)
             self?.currentComic = comic.num
         }
     }
