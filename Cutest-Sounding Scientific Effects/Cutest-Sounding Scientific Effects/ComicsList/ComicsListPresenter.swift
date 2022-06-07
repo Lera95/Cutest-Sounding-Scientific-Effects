@@ -4,7 +4,7 @@ import UIKit
 protocol ComicsListPresenterProtocol {
     func didSelectedItem(at indexPath: IndexPath)
     func filteredCellsModelsCount() -> Int
-    func getViewModel(for indexPath: IndexPath) -> NetworkComicModel
+    func getViewModel(for indexPath: IndexPath) -> NetworkComicModel?
     func searchBarTextDidChange(searchText: String)
     func searchBarCancelButtonClicked()
     func requestData(searchText: String?)
@@ -48,7 +48,7 @@ class ComicsListPresenter: ComicsListPresenterProtocol {
         filteredComics.count
     }
 
-    func getViewModel(for indexPath: IndexPath) -> NetworkComicModel {
+    func getViewModel(for indexPath: IndexPath) -> NetworkComicModel? {
         filteredComics[indexPath.row]
     }
     

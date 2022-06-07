@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		9B16FD0928413A3E00CCEE01 /* Cutest_Sounding_Scientific_EffectsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B16FD0828413A3E00CCEE01 /* Cutest_Sounding_Scientific_EffectsTests.swift */; };
 		9B16FD1128413A9700CCEE01 /* ComicsListPresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B16FD1028413A9700CCEE01 /* ComicsListPresenterTest.swift */; };
-		9B16FD1328413E6300CCEE01 /* DetailsViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B16FD1228413E6300CCEE01 /* DetailsViewControllerTest.swift */; };
+		9B16FD1328413E6300CCEE01 /* DetailsViewPresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B16FD1228413E6300CCEE01 /* DetailsViewPresenterTest.swift */; };
 		9B2BE0CC28184F920059C03D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2BE0CB28184F920059C03D /* AppDelegate.swift */; };
 		9B2BE0CE28184F920059C03D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2BE0CD28184F920059C03D /* SceneDelegate.swift */; };
 		9B2BE0D528184F960059C03D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B2BE0D428184F960059C03D /* Assets.xcassets */; };
@@ -27,6 +27,8 @@
 		9B826ECB28492AC800712A60 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B826EC928492AC800712A60 /* Assets.swift */; };
 		9B826ECE284A356C00712A60 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 9B826ECD284A356C00712A60 /* Kingfisher */; };
 		9B826ED0284A3C4100712A60 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B826ECF284A3C4100712A60 /* UIView+Extension.swift */; };
+		9B826ED9284FC0E100712A60 /* DetailsViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B826ED8284FC0E100712A60 /* DetailsViewControllerTest.swift */; };
+		9B826EDB284FC0FC00712A60 /* ComicsListControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B826EDA284FC0FC00712A60 /* ComicsListControllerTest.swift */; };
 		9BC2BF182843FB5600F8B48E /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC2BF172843FB5600F8B48E /* Router.swift */; };
 		9BC2BF1A28468E4800F8B48E /* UITabelView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC2BF1928468E4800F8B48E /* UITabelView+Extension.swift */; };
 		9BCD32562848CB4300F7BAA9 /* CutestTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BCD32552848CB4300F7BAA9 /* CutestTimer.swift */; };
@@ -51,7 +53,7 @@
 		9B16FD0628413A3E00CCEE01 /* Cutest-Sounding Scientific EffectsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Cutest-Sounding Scientific EffectsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B16FD0828413A3E00CCEE01 /* Cutest_Sounding_Scientific_EffectsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cutest_Sounding_Scientific_EffectsTests.swift; sourceTree = "<group>"; };
 		9B16FD1028413A9700CCEE01 /* ComicsListPresenterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicsListPresenterTest.swift; sourceTree = "<group>"; };
-		9B16FD1228413E6300CCEE01 /* DetailsViewControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewControllerTest.swift; sourceTree = "<group>"; };
+		9B16FD1228413E6300CCEE01 /* DetailsViewPresenterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewPresenterTest.swift; sourceTree = "<group>"; };
 		9B2BE0C828184F920059C03D /* Cutest-Sounding Scientific Effects.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cutest-Sounding Scientific Effects.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B2BE0CB28184F920059C03D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9B2BE0CD28184F920059C03D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -70,6 +72,8 @@
 		9B826EC828492AC800712A60 /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		9B826EC928492AC800712A60 /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		9B826ECF284A3C4100712A60 /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+Extension.swift"; path = "../../../../.Trash/UIView+Extension.swift"; sourceTree = "<group>"; };
+		9B826ED8284FC0E100712A60 /* DetailsViewControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewControllerTest.swift; sourceTree = "<group>"; };
+		9B826EDA284FC0FC00712A60 /* ComicsListControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicsListControllerTest.swift; sourceTree = "<group>"; };
 		9BC2BF172843FB5600F8B48E /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		9BC2BF1928468E4800F8B48E /* UITabelView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITabelView+Extension.swift"; sourceTree = "<group>"; };
 		9BCD32552848CB4300F7BAA9 /* CutestTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CutestTimer.swift; path = ../../../../Desktop/CutestTimer.swift; sourceTree = "<group>"; };
@@ -111,8 +115,8 @@
 		9B16FD0F28413A6500CCEE01 /* TestMainModule */ = {
 			isa = PBXGroup;
 			children = (
-				9B16FD1028413A9700CCEE01 /* ComicsListPresenterTest.swift */,
-				9B16FD1228413E6300CCEE01 /* DetailsViewControllerTest.swift */,
+				9B826ED5284FC08900712A60 /* ControllerTest */,
+				9B826ED3284FC04600712A60 /* PresenterTest */,
 			);
 			path = TestMainModule;
 			sourceTree = "<group>";
@@ -229,6 +233,24 @@
 				9B826EC828492AC800712A60 /* Strings.swift */,
 			);
 			path = Swiftgen;
+			sourceTree = "<group>";
+		};
+		9B826ED3284FC04600712A60 /* PresenterTest */ = {
+			isa = PBXGroup;
+			children = (
+				9B16FD1228413E6300CCEE01 /* DetailsViewPresenterTest.swift */,
+				9B16FD1028413A9700CCEE01 /* ComicsListPresenterTest.swift */,
+			);
+			path = PresenterTest;
+			sourceTree = "<group>";
+		};
+		9B826ED5284FC08900712A60 /* ControllerTest */ = {
+			isa = PBXGroup;
+			children = (
+				9B826ED8284FC0E100712A60 /* DetailsViewControllerTest.swift */,
+				9B826EDA284FC0FC00712A60 /* ComicsListControllerTest.swift */,
+			);
+			path = ControllerTest;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -364,9 +386,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9B16FD1328413E6300CCEE01 /* DetailsViewControllerTest.swift in Sources */,
+				9B826EDB284FC0FC00712A60 /* ComicsListControllerTest.swift in Sources */,
+				9B16FD1328413E6300CCEE01 /* DetailsViewPresenterTest.swift in Sources */,
 				9B16FD1128413A9700CCEE01 /* ComicsListPresenterTest.swift in Sources */,
 				9B16FD0928413A3E00CCEE01 /* Cutest_Sounding_Scientific_EffectsTests.swift in Sources */,
+				9B826ED9284FC0E100712A60 /* DetailsViewControllerTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

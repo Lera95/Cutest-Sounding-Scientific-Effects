@@ -80,7 +80,7 @@ extension ComicsViewController: UITableViewDataSource {
             return UITableViewCell()
         }
 
-        cell.textLabel?.text = presenter.getViewModel(for: indexPath).title
+        cell.textLabel?.text = presenter.getViewModel(for: indexPath)?.title
         return cell
     }
 

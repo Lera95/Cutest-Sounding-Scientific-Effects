@@ -2,12 +2,22 @@ import XCTest
 @testable import Cutest_Sounding_Scientific_Effects
 
 class DetailsMocView: DetailsComicViewControllerProtocol {
+    func setTitleLabel(text: String) {
+
+    }
+
+    func setComicsImage(with url: URL) {
+
+    }
+
     func downloaded(comic: XkcdManagerModel) {
 
     }
 }
 
 class MocXkcdManagerProtocol: XkcdManagerProtocol {
+    var delegate: ComicDelegate?
+    
     func getLatest() {
 
     }
@@ -21,7 +31,7 @@ class MocXkcdManagerProtocol: XkcdManagerProtocol {
     }
 }
 
-class DetailsViewControllerTest: XCTestCase {
+class DetailsViewPresenterTest: XCTestCase {
 
     var view: DetailsMocView!
     var router: MocRouter!
