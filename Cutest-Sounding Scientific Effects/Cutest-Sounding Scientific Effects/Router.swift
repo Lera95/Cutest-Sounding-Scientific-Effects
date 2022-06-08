@@ -9,8 +9,7 @@ protocol RouterMain {
 protocol RouterProtocol: RouterMain {
     func initialViewController()
     func popToRoot()
-    func showDetailsViewController(with id: Int)
-    init(navigationController: UINavigationController, assemblyBuilder: AsselderBuilderProtocol)
+    func showDetailsViewController(at indexPath: IndexPath)
 }
 
 class Router: RouterProtocol {
@@ -18,7 +17,7 @@ class Router: RouterProtocol {
     var navigationController: UINavigationController?
     var assemblyBuilder: AsselderBuilderProtocol?
 
-    required init(navigationController: UINavigationController, assemblyBuilder: AsselderBuilderProtocol) {
+    init(navigationController: UINavigationController, assemblyBuilder: AsselderBuilderProtocol) {
         self.navigationController = navigationController
         self.assemblyBuilder = assemblyBuilder
     }
@@ -32,9 +31,9 @@ class Router: RouterProtocol {
         }
     }
 
-    func showDetailsViewController(with id: Int) {
+    func showDetailsViewController(at indexPath: IndexPath) {
         if let navigationController = navigationController {
-            guard let detailsViewController = assemblyBuilder?.createDetailsComicViewController(with: id, router: self) else {
+            guard let detailsViewController = assemblyBuilder?.createDetailsComicViewController(with: indexPath.row, router: self) else {
                 return
             }
             navigationController.pushViewController(detailsViewController, animated: true)

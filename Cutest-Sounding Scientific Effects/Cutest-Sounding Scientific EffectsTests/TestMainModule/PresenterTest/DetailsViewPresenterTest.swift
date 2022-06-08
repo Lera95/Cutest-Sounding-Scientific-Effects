@@ -2,25 +2,47 @@ import XCTest
 @testable import Cutest_Sounding_Scientific_Effects
 
 class DetailsMocView: DetailsComicViewControllerProtocol {
+    func setTitleLabel(text: String) {
+
+    }
+
+    func setComicsImage(with url: URL) {
+
+    }
+
     func downloaded(comic: XkcdManagerModel) {
 
     }
 }
 
-class DetailsViewControllerTest: XCTestCase {
+class MocXkcdManagerProtocol: XkcdManagerProtocol {
+    var delegate: ComicDelegate?
+    
+    func getLatest() {
+
+    }
+
+    func getComic(withID id: Int) {
+
+    }
+
+    func getRandom() {
+
+    }
+}
+
+class DetailsViewPresenterTest: XCTestCase {
 
     var view: DetailsMocView!
-    var router: RouterProtocol!
+    var router: MocRouter!
     var comic: XkcdManagerModel!
     var presenter: DetailsComicViewPresenter!
-    var navController: UINavigationController!
-    var assembly: AsselderBuilderProtocol!
+    var xkcdManager: MocXkcdManagerProtocol!
 
     override func setUp() {
         view = DetailsMocView()
-        navController = UINavigationController()
-        assembly = AsselderModuleBuilder()
-        router = Router(navigationController: navController, assemblyBuilder: assembly)
+        router = MocRouter()
+        xkcdManager = MocXkcdManagerProtocol()
         comic = XkcdManagerModel(month: "10",
                                  num: 1,
                                  link: "",
@@ -32,15 +54,13 @@ class DetailsViewControllerTest: XCTestCase {
                                  img: "",
                                  title: "title",
                                  day: "11")
-        presenter = DetailsComicViewPresenter(view: view, router: router, id: 0)
+        presenter = DetailsComicViewPresenter(view: view, router: router, id: 0, xkcdManager: xkcdManager)
     }
 
     override func tearDown() {
         view = nil
         comic = nil
         presenter = nil
-        navController = nil
-        assembly = nil
         router = nil
     }
 

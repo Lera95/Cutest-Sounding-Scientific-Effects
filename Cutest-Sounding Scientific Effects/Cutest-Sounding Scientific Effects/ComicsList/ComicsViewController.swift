@@ -2,6 +2,10 @@ import UIKit
 
 protocol ComicsViewControllerProtocol: AnyObject {
     func reload()
+    func clearSearchText()
+    func deselectRow(at indexPath: IndexPath)
+    func showEmptyMessageLabel()
+    func removeEmptyMessageLabel()
 }
 
 class ComicsViewController: UIViewController {
@@ -9,35 +13,57 @@ class ComicsViewController: UIViewController {
     @IBOutlet var searchBar: UISearchBar!
     @IBOutlet var comicTableView: UITableView!
 
-    private let cellHeight = 50.0
-    private let titleText = "Choose your joke"
+    private let titleText = L10n.ComicsViewController.title
+    private let emptyText = L10n.ComicsViewController.emptyTitle
 
-    private var searchTimer: Timer?
-    var presenter: ComicsListPresenterProtocol?
+    var presenter: ComicsListPresenterProtocol!
 
-    private static let cellIdentifier = "Cell"
+    private static let cellIdentifier = L10n.ComicsViewController.cellIdentifier
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        presenter.viewDidLoad()
         title = titleText
         setupTableView()
         setupSearchBar()
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.keyboardDidShow(notification:)),
+                                               name: UIResponder.keyboardDidShowNotification,
+                                               object: nil)
+
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.keyboardWillBeHidden(notification:)),
+                                               name: UIResponder.keyboardWillHideNotification,
+                                               object: nil)
     }
 
     private func setupTableView() {
         comicTableView.register(UITableViewCell.self, forCellReuseIdentifier: ComicsViewController.cellIdentifier)
-        comicTableView.dataSource = self
-        comicTableView.delegate = self
-
-        DispatchQueue.main.async {
-            self.view.showBlurLoader()
+        comicTableView.keyboardDismissMode = .interactive
+        DispatchQueue.main.async { [weak self] in
+            self?.view.showBlurLoader()
         }
     }
 
     private func setupSearchBar() {
-        searchBar.delegate = self
         self.searchBar.showsCancelButton = true
+    }
+
+    @objc private func keyboardDidShow(notification: NSNotification) {
+        guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue else {
+            return
+        }
+        
+        let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyboardSize.height, right: 0.0)
+        self.comicTableView.contentInset = contentInsets
+        self.comicTableView.scrollIndicatorInsets = contentInsets
+    }
+
+    @objc private func keyboardWillBeHidden(notification: NSNotification) {
+        let contentInsets = UIEdgeInsets.zero
+        self.comicTableView.contentInset = contentInsets
+        self.comicTableView.scrollIndicatorInsets = contentInsets
     }
 }
 
@@ -45,7 +71,7 @@ class ComicsViewController: UIViewController {
 
 extension ComicsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presenter?.filteredCellsModelsCount() ?? 0
+        return presenter.filteredCellsModelsCount()
     }
 
 
@@ -54,13 +80,12 @@ extension ComicsViewController: UITableViewDataSource {
             return UITableViewCell()
         }
 
-        cell.textLabel?.text = presenter?.getViewModel(for: indexPath.row).title
+        cell.textLabel?.text = presenter.getViewModel(for: indexPath)?.title
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        comicTableView.deselectRow(at: indexPath as IndexPath, animated: true)
-        presenter?.tapOnComicCell(id: indexPath.row)
+        presenter.didSelectedItem(at: indexPath)
     }
 }
 
@@ -69,7 +94,7 @@ extension ComicsViewController: UITableViewDataSource {
 extension ComicsViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        cellHeight
+        UITableView.automaticDimension
     }
 }
 
@@ -78,20 +103,16 @@ extension ComicsViewController: UITableViewDelegate {
 extension ComicsViewController: UISearchBarDelegate {
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        self.searchTimer?.invalidate()
-
         guard let searchText = searchBar.text else { return }
-
-        searchTimer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { [weak self] (timer) in
-            DispatchQueue.global(qos: .userInteractive).async { [weak self] in
-                self?.presenter?.searchBarTextDidChange(searchText: searchText)
-            }
-        })
+        presenter.searchTextWithTimer(searchText: searchText)
     }
 
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        presenter.searchBarCancelButtonClicked()
+    }
+
+    func clearSearchText() {
         searchBar.text = ""
-        presenter?.searchBarCancelButtonClicked()
     }
 }
 
@@ -100,10 +121,22 @@ extension ComicsViewController: UISearchBarDelegate {
 extension ComicsViewController: ComicsViewControllerProtocol {
 
     func reload() {
-        DispatchQueue.main.async {
-            self.view.removeBluerLoader()
-            self.comicTableView.reloadData()
+        DispatchQueue.main.async { [weak self] in
+            self?.view.removeBluerLoader()
+            self?.comicTableView.reloadData()
         }
+    }
+
+    func deselectRow(at indexPath: IndexPath) {
+        comicTableView.deselectRow(at: indexPath as IndexPath, animated: true)
+    }
+
+    func showEmptyMessageLabel() {
+        self.comicTableView.setEmptyMessage(emptyText)
+    }
+
+    func removeEmptyMessageLabel() {
+        self.comicTableView.restore()
     }
 }
 

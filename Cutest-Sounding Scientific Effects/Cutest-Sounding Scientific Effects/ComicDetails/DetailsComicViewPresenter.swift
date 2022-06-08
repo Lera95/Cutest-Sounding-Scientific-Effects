@@ -2,9 +2,7 @@ import Foundation
 
 protocol DetailsComicViewPresenterProtocol {
 
-    init(view: DetailsComicViewControllerProtocol, router: RouterProtocol, id: Int)
     func viewDidLoad()
-    func setComicId(with id: Int)
     func prevTapped()
     func getCurrentComic()
     func lastTapped()
@@ -20,17 +18,22 @@ class DetailsComicViewPresenter: DetailsComicViewPresenterProtocol {
     private var currentComic = -1
     private weak var view: DetailsComicViewControllerProtocol?
     private var router: RouterProtocol?
+    private var xkcdManager: XkcdManagerProtocol
 
-    required init(view: DetailsComicViewControllerProtocol, router: RouterProtocol, id: Int) {
+    init(view: DetailsComicViewControllerProtocol,
+                  router: RouterProtocol,
+                  id: Int,
+         xkcdManager: XkcdManagerProtocol = XkcdManager.shared) {
         self.view = view
         self.router = router
+        self.xkcdManager = xkcdManager
         self.setComicId(with: id)
     }
 
 
     func viewDidLoad() {
-        XkcdManager.shared.delegate = self
-        XkcdManager.shared.getLatest()
+        xkcdManager.delegate = self
+        xkcdManager.getLatest()
     }
 
     func tap() {
@@ -75,9 +78,12 @@ extension DetailsComicViewPresenter: ComicDelegate {
 
     func didGetComic(comic: XkcdManagerModel) {
         self.comic = comic
-        DispatchQueue.main.async {
-            self.view?.downloaded(comic: comic)
-            self.currentComic = comic.num
+        DispatchQueue.main.async { [weak self] in
+            guard let url = URL(string: comic.img) else { return }
+            
+            self?.view?.setTitleLabel(text: comic.title)
+            self?.view?.setComicsImage(with: url)
+            self?.currentComic = comic.num
         }
     }
 

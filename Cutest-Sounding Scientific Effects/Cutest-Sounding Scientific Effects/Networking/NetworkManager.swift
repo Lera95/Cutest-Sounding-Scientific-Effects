@@ -1,7 +1,12 @@
 import Foundation
 import UIKit
 
-class NetworkManager {
+protocol NetworkManagerProtocol {
+    func getComics(since: Int, completion: @escaping (Result<ComicsModel, XCError>) -> Void)
+    func getImageData(_ url: String) -> Data
+}
+
+class NetworkManager: NetworkManagerProtocol {
     
     static let shared = NetworkManager()
     private let baseURL = "https://api.xkcdy.com/"

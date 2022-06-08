@@ -2,39 +2,54 @@ import Foundation
 import UIKit
 
 protocol ComicsListPresenterProtocol {
-    init(view: ComicsViewControllerProtocol, router: RouterProtocol)
-    func tapOnComicCell(id: Int)
+    func didSelectedItem(at indexPath: IndexPath)
     func filteredCellsModelsCount() -> Int
-    func getViewModel(for row: Int) -> NetworkComicModel 
+    func getViewModel(for indexPath: IndexPath) -> NetworkComicModel?
     func searchBarTextDidChange(searchText: String)
     func searchBarCancelButtonClicked()
     func requestData(searchText: String?)
+    func searchTextWithTimer(searchText: String)
+    func viewDidLoad()
 }
 
 class ComicsListPresenter: ComicsListPresenterProtocol {
 
-    private var cellsModels: [NetworkComicModel] = []
-    private var filteredCellsModels: [NetworkComicModel] = []
-    private var comics = ComicsModel()
+    private var filteredComics: [NetworkComicModel] = []
     private weak var view: ComicsViewControllerProtocol?
     private var router: RouterProtocol?
+    private var searchTimer: CutestTimer?
+    private var networkManager: NetworkManagerProtocol
 
-    required init(view: ComicsViewControllerProtocol, router: RouterProtocol) {
+    required init(view: ComicsViewControllerProtocol,
+                  router: RouterProtocol,
+                  networkManager: NetworkManagerProtocol = NetworkManager.shared) {
         self.view = view
         self.router = router
+        self.networkManager = networkManager
+    }
+
+    func viewDidLoad() {
         self.requestData(searchText: "")
     }
 
-    func tapOnComicCell(id: Int) {
-        router?.showDetailsViewController(with: id)
+    func searchTextWithTimer(searchText: String) {
+        searchTimer = CutestTimer()
+        searchTimer?.start(withTimeInterval: 1, onFire: {
+            self.searchBarTextDidChange(searchText: searchText)
+        })
+    }
+
+    func didSelectedItem(at indexPath: IndexPath) {
+        view?.deselectRow(at: indexPath)
+        router?.showDetailsViewController(at: indexPath)
     }
 
     func filteredCellsModelsCount() -> Int {
-        return filteredCellsModels.count
+        filteredComics.count
     }
 
-    func getViewModel(for row: Int) -> NetworkComicModel {
-        filteredCellsModels[row]
+    func getViewModel(for indexPath: IndexPath) -> NetworkComicModel? {
+        filteredComics[indexPath.row]
     }
     
     func searchBarTextDidChange(searchText: String) {
@@ -43,22 +58,34 @@ class ComicsListPresenter: ComicsListPresenterProtocol {
 
     func searchBarCancelButtonClicked() {
         requestData(searchText: "")
+        view?.clearSearchText()
     }
 
     func requestData(searchText: String?) {
-        NetworkManager.shared.getComics(since: 0) { result in
+        networkManager.getComics(since: 0) { [weak self] result in
             switch result {
             case .success(let comics):
-                self.comics = comics.reversed()
-                self.cellsModels = comics
+                self?.filteredComics = comics.reversed()
                 guard let searchText = searchText else {
                     return
                 }
-                let cell = searchText.isEmpty ? self.cellsModels : self.cellsModels.filter { $0.safeTitle.contains(searchText) }
-                self.filteredCellsModels = cell
-                self.view?.reload()
+                let comics = searchText.isEmpty ? self?.filteredComics : self?.filteredComics.filter { $0.safeTitle.contains(searchText) }
+                guard let comics = comics else { return }
+                self?.filteredComics = comics
+                self?.emptyPlaceHolder(filteredComics: self?.filteredComics ?? [])
+                self!.view?.reload()
             case .failure(let error):
                 print(error.localizedDescription)
+            }
+        }
+    }
+
+    func emptyPlaceHolder(filteredComics: [NetworkComicModel]) {
+        DispatchQueue.main.async { [weak self] in
+            if filteredComics.isEmpty {
+                self?.view?.showEmptyMessageLabel()
+            } else {
+                self?.view?.removeEmptyMessageLabel()
             }
         }
     }

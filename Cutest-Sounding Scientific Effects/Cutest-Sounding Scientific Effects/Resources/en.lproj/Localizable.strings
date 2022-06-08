@@ -1,0 +1,10 @@
+//// MARK: - ComicsViewController
+
+"ComicsViewController.Title" = "Choose your joke";
+"ComicsViewController.EmptyTitle" = "No result";
+"ComicsViewController.CellIdentifier" = "Cell";
+
+//// MARK: - DetailsComicViewController
+
+"DetailsComicViewController.Title" = "Find the best or randomize";
+"DetailsComicViewController.Identifier" = "DetailsComicViewController";

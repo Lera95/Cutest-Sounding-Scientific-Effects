@@ -1,7 +1,9 @@
 import UIKit
+import Kingfisher
 
 protocol DetailsComicViewControllerProtocol: AnyObject{
-    func downloaded(comic: XkcdManagerModel)
+    func setTitleLabel(text: String)
+    func setComicsImage(with url: URL)
 }
 
 class DetailsComicViewController: UIViewController {
@@ -14,55 +16,50 @@ class DetailsComicViewController: UIViewController {
     @IBOutlet private weak var lastButton: UIButton!
     @IBOutlet private weak var firstButton: UIButton!
 
-    private let titleText = "Find the best or randomize"
+    private let titleText = L10n.DetailsComicViewController.title
 
-    static let identifier = "DetailsComicViewController"
+    static let identifier = L10n.DetailsComicViewController.identifier
 
-    var presenter: DetailsComicViewPresenterProtocol?
+    var presenter: DetailsComicViewPresenterProtocol!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        presenter?.viewDidLoad()
+        presenter.viewDidLoad()
         title = titleText
         textLabel.numberOfLines = 0
         setUpButtonImage()
     }
-
-    func setComicId(with id: Int) {
-        presenter?.setComicId(with: id)
-    }
-
     // MARK: - Private
-
+    
     private func setUpButtonImage() {
-        randomButton.setImage(UIImage.shuffle, for: .normal)
-        previousButton.setImage(UIImage.backward, for: .normal)
-        nextButton.setImage(UIImage.forward, for: .normal)
-        lastButton.setImage(UIImage.forwardEnd, for: .normal)
-        firstButton.setImage(UIImage.backwardEnd, for: .normal)
+        randomButton.setImage(Asset.shuffle.image, for: .normal)
+        previousButton.setImage(Asset.backward.image, for: .normal)
+        nextButton.setImage(Asset.forward.image, for: .normal)
+        lastButton.setImage(Asset.forwardEnd.image, for: .normal)
+        firstButton.setImage(Asset.backwardEnd.image, for: .normal)
     }
 
     // MARK: - @IBAction
 
     @IBAction private func prevTapped(_ sender: Any) {
-        presenter?.prevTapped()
+        presenter.prevTapped()
     }
 
     @IBAction private func lastTapped(_ sender: Any) {
-        presenter?.lastTapped()
+        presenter.lastTapped()
     }
 
     @IBAction private func randomTapped(_ sender: Any) {
-        presenter?.randomTapped()
+        presenter.randomTapped()
     }
 
     @IBAction private func forwardTapped(_ sender: Any) {
-        presenter?.forwardTapped()
+        presenter.forwardTapped()
     }
 
     @IBAction private func firstTapped(_ sender: Any) {
-        presenter?.forwardTapped()
+        presenter.forwardTapped()
     }
 }
 
@@ -70,10 +67,15 @@ class DetailsComicViewController: UIViewController {
 
 extension DetailsComicViewController: DetailsComicViewControllerProtocol {
 
-    func downloaded(comic: XkcdManagerModel) {
-        DispatchQueue.main.async {
-            self.imageView.downloaded(from: comic.img)
-            self.textLabel.text = comic.alt
+    func setTitleLabel(text: String) {
+        DispatchQueue.main.async { [weak self] in
+            self?.textLabel.text = text
+        }
+    }
+    func setComicsImage(with url: URL) {
+        DispatchQueue.main.async { [weak self] in
+            self?.imageView.kf.indicatorType = .activity
+            self?.imageView.kf.setImage(with: url)
         }
     }
 }

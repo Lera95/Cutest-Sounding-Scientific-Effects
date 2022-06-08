@@ -2,9 +2,45 @@ import XCTest
 @testable import Cutest_Sounding_Scientific_Effects
 
 class MockView: ComicsViewControllerProtocol {
+    func showEmptyMessageLabel() {
+
+    }
+
+    func removeEmptyMessageLabel() {
+
+    }
+
+    func clearSearchText() {
+
+    }
+
+    func deselectRow(at indexPath: IndexPath) {
+        
+    }
+
     func reload() {
 
     }
+}
+
+class MocRouter: RouterProtocol {
+    func initialViewController() {
+
+    }
+
+    func popToRoot() {
+
+    }
+
+    func showDetailsViewController(at indexPath: IndexPath) {
+
+    }
+
+    var navigationController: UINavigationController?
+
+    var assemblyBuilder: AsselderBuilderProtocol?
+
+
 }
 
 class ComicsListPresenterTest: XCTestCase {
@@ -12,17 +48,13 @@ class ComicsListPresenterTest: XCTestCase {
     var view: MockView!
     var comics: ComicsModel!
     var presenter: ComicsListPresenter!
-    var router: RouterProtocol!
-    var navController: UINavigationController!
-    var assembly: AsselderBuilderProtocol!
+    var router: MocRouter!
 
 
     override func setUp() {
         view = MockView()
         comics = ComicsModel()
-        navController = UINavigationController()
-        assembly = AsselderModuleBuilder()
-        router = Router(navigationController: navController, assemblyBuilder: assembly)
+        router = MocRouter()
         presenter = ComicsListPresenter(view: view, router: router)
     }
 
