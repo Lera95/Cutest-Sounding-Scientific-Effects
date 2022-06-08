@@ -7,7 +7,7 @@ protocol RouterMain {
 }
 
 protocol RouterProtocol: RouterMain {
-    func initialViewController()
+    func setInitialViewController()
     func popToRoot()
     func showDetailsViewController(at indexPath: IndexPath)
 }
@@ -22,7 +22,7 @@ class Router: RouterProtocol {
         self.assemblyBuilder = assemblyBuilder
     }
 
-    func initialViewController() {
+    func setInitialViewController() {
         if let navigationController = navigationController {
             guard let comicsListViewController = assemblyBuilder?.createComicsListViewController(router: self) else {
                 return

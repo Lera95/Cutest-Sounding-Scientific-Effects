@@ -2,7 +2,7 @@ import Foundation
 import UIKit
 
 protocol NetworkManagerProtocol {
-    func getComics(since: Int, completion: @escaping (Result<ComicsModel, XCError>) -> Void)
+    func getComics(text: String, completion: @escaping (Result<[NetworkComicModel], XCError>) -> Void)
     func getImageData(_ url: String) -> Data
 }
 
@@ -13,7 +13,8 @@ class NetworkManager: NetworkManagerProtocol {
     
     // MARK: - Getting all commics
     
-    func getComics(since: Int, completion: @escaping (Result<ComicsModel, XCError>) -> Void) {
+    func getComics(text: String, completion: @escaping (Result<[NetworkComicModel], XCError>) -> Void) {
+        let since = 0
         let endpoint = baseURL + "comics"
         
         guard var components = URLComponents(string: endpoint) else {
@@ -29,28 +30,42 @@ class NetworkManager: NetworkManagerProtocol {
         
         let _ = URLSession.shared.dataTask(with: url) { data, response, error in
             if let _ = error {
-                completion(.failure(.unableToComplete))
+                DispatchQueue.main.async {
+                    completion(.failure(.unableToComplete))
+                }
             }
             
             guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-                completion(.failure(.invalidResponse))
+                DispatchQueue.main.async {
+                    completion(.failure(.invalidResponse))
+                }
                 return
             }
             
             guard let data = data else {
-                completion(.failure(.invalidData))
+                DispatchQueue.main.async {
+                    completion(.failure(.invalidData))
+                }
                 return
             }
             
             do {
                 let decoder = JSONDecoder()
-                let comics = try decoder.decode(ComicsModel.self, from: data)
-                completion(.success(comics))
+                let comics = try decoder.decode([NetworkComicModel].self, from: data)
+                DispatchQueue.main.async { [weak self] in
+                    completion(.success(self?.filterComics(comics: comics, searchText: text) ?? []))
+                }
             } catch {
-                completion(.failure(.invalidData))
+                DispatchQueue.main.async {
+                    completion(.failure(.invalidData))
+                }
             }
             
         }.resume()
+    }
+
+    private func filterComics(comics: [NetworkComicModel], searchText: String) -> [NetworkComicModel] {
+        searchText.isEmpty ? comics : comics.filter { $0.safeTitle.contains(searchText) }
     }
     
     // MARK: - Getting image data for saving in the database

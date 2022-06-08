@@ -38,14 +38,14 @@ class MocComicPresenter: ComicsListPresenterProtocol {
 class ComicsListControllerTest: XCTestCase {
 
     var view: ComicsViewControllerProtocol!
-    var comics: ComicsModel!
+    var comics: [NetworkComicModel]!
     var presenter: MocComicPresenter!
     var router: MocRouter!
 
 
     override func setUp() {
         view = ComicsViewController()
-        comics = ComicsModel()
+        comics = [NetworkComicModel]()
         router = MocRouter()
         presenter = MocComicPresenter()
     }

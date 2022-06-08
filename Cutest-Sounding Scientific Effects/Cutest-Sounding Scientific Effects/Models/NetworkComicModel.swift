@@ -16,4 +16,3 @@ struct NetworkComicModel: Codable, Identifiable, Hashable {
     }
 }
 
-typealias ComicsModel = [NetworkComicModel]

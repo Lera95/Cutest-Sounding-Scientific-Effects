@@ -2,32 +2,35 @@ import XCTest
 @testable import Cutest_Sounding_Scientific_Effects
 
 class DetailsMocView: DetailsComicViewControllerProtocol {
-    func setTitleLabel(text: String) {
 
+    var isSetTitleLabel =  false
+    var isSetComicsImage =  false
+
+    func setTitleLabel(text: String) {
+        isSetTitleLabel = true
     }
 
     func setComicsImage(with url: URL) {
-
-    }
-
-    func downloaded(comic: XkcdManagerModel) {
-
+        isSetComicsImage = true
     }
 }
 
 class MocXkcdManagerProtocol: XkcdManagerProtocol {
     var delegate: ComicDelegate?
+    var isGetLatest = false
+    var isGetComic = false
+    var isGetRandom = false
     
     func getLatest() {
-
+        isGetLatest = true
     }
 
     func getComic(withID id: Int) {
-
+        isGetComic = true
     }
 
     func getRandom() {
-
+        isGetRandom = true
     }
 }
 
@@ -62,6 +65,21 @@ class DetailsViewPresenterTest: XCTestCase {
         comic = nil
         presenter = nil
         router = nil
+        comic = nil
+        xkcdManager = nil
+    }
+
+//    func viewDidLoad()
+//    func prevTapped()
+//    func getCurrentComic()
+//    func lastTapped()
+//    func randomTapped()
+//    func forwardTapped()
+//    func firstTapped()
+//    func tap()
+
+    func testViewDidLoad() {
+        presenter.viewDidLoad()
     }
 
     override func setUpWithError() throws {
@@ -76,6 +94,8 @@ class DetailsViewPresenterTest: XCTestCase {
         XCTAssertNotNil(view, "View is not nil")
         XCTAssertNotNil(presenter, "Presenter is not nil")
         XCTAssertNotNil(comic, "Comic is not nil")
+        XCTAssertNotNil(router, "Router is not nil")
+        XCTAssertNotNil(xkcdManager, "XkcdManager is not nil")
     }
 
 

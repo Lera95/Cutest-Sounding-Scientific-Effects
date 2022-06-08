@@ -14,7 +14,7 @@
 		9B2BE0CE28184F920059C03D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2BE0CD28184F920059C03D /* SceneDelegate.swift */; };
 		9B2BE0D528184F960059C03D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B2BE0D428184F960059C03D /* Assets.xcassets */; };
 		9B2BE0D828184F960059C03D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B2BE0D628184F960059C03D /* LaunchScreen.storyboard */; };
-		9B35E6BE281BFF3B00C40D95 /* ComicModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B35E6BD281BFF3B00C40D95 /* ComicModel.swift */; };
+		9B35E6BE281BFF3B00C40D95 /* NetworkComicModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B35E6BD281BFF3B00C40D95 /* NetworkComicModel.swift */; };
 		9B35E6D3281C1E5B00C40D95 /* XkcdManegerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B35E6D2281C1E5B00C40D95 /* XkcdManegerModel.swift */; };
 		9B35E6D9281F0B2200C40D95 /* BlurLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B35E6D8281F0B2200C40D95 /* BlurLoader.swift */; };
 		9B35E6DD281F11DE00C40D95 /* ComicsListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B35E6DC281F11DE00C40D95 /* ComicsListPresenter.swift */; };
@@ -60,7 +60,7 @@
 		9B2BE0D428184F960059C03D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9B2BE0D728184F960059C03D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9B2BE0D928184F960059C03D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9B35E6BD281BFF3B00C40D95 /* ComicModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicModel.swift; sourceTree = "<group>"; };
+		9B35E6BD281BFF3B00C40D95 /* NetworkComicModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkComicModel.swift; sourceTree = "<group>"; };
 		9B35E6D2281C1E5B00C40D95 /* XkcdManegerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XkcdManegerModel.swift; sourceTree = "<group>"; };
 		9B35E6D8281F0B2200C40D95 /* BlurLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurLoader.swift; sourceTree = "<group>"; };
 		9B35E6DC281F11DE00C40D95 /* ComicsListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicsListPresenter.swift; sourceTree = "<group>"; };
@@ -211,7 +211,7 @@
 		9B59F05F28187B79000C3C1B /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				9B35E6BD281BFF3B00C40D95 /* ComicModel.swift */,
+				9B35E6BD281BFF3B00C40D95 /* NetworkComicModel.swift */,
 				9B35E6D2281C1E5B00C40D95 /* XkcdManegerModel.swift */,
 			);
 			path = Models;
@@ -405,7 +405,7 @@
 				9B35E6E32820436F00C40D95 /* XkcdManeger.swift in Sources */,
 				9B826ECB28492AC800712A60 /* Assets.swift in Sources */,
 				9B57AB81281ABA570082F383 /* NetworkManager.swift in Sources */,
-				9B35E6BE281BFF3B00C40D95 /* ComicModel.swift in Sources */,
+				9B35E6BE281BFF3B00C40D95 /* NetworkComicModel.swift in Sources */,
 				9B2BE0CC28184F920059C03D /* AppDelegate.swift in Sources */,
 				9BC2BF1A28468E4800F8B48E /* UITabelView+Extension.swift in Sources */,
 				9BC2BF182843FB5600F8B48E /* Router.swift in Sources */,

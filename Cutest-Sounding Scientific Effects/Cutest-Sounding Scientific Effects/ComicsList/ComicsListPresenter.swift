@@ -62,15 +62,9 @@ class ComicsListPresenter: ComicsListPresenterProtocol {
     }
 
     func requestData(searchText: String?) {
-        networkManager.getComics(since: 0) { [weak self] result in
+        networkManager.getComics(text: searchText ?? "") { [weak self] result in
             switch result {
             case .success(let comics):
-                self?.filteredComics = comics.reversed()
-                guard let searchText = searchText else {
-                    return
-                }
-                let comics = searchText.isEmpty ? self?.filteredComics : self?.filteredComics.filter { $0.safeTitle.contains(searchText) }
-                guard let comics = comics else { return }
                 self?.filteredComics = comics
                 self?.emptyPlaceHolder(filteredComics: self?.filteredComics ?? [])
                 self!.view?.reload()
@@ -81,12 +75,10 @@ class ComicsListPresenter: ComicsListPresenterProtocol {
     }
 
     func emptyPlaceHolder(filteredComics: [NetworkComicModel]) {
-        DispatchQueue.main.async { [weak self] in
             if filteredComics.isEmpty {
-                self?.view?.showEmptyMessageLabel()
+                self.view?.showEmptyMessageLabel()
             } else {
-                self?.view?.removeEmptyMessageLabel()
+                self.view?.removeEmptyMessageLabel()
             }
-        }
     }
 }
